@@ -16,5 +16,5 @@ struct Event: Codable, Hashable {
   let latitude: Float
   let price: Float
   let title: String
-  let id: Int
+  let id: String
 }
