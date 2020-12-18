@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import SnapKit
 
 final class EventsViewControllerScreen: UIView {
+
+  // MARK: - Properties
+  var tableView: UITableView = UITableView(frame: .zero)
 
   // MARK: - Inits
   override init(frame: CGRect) {
@@ -23,11 +27,13 @@ final class EventsViewControllerScreen: UIView {
 
 extension EventsViewControllerScreen: ViewCodable {
   func buildViewHierarchy() {
-
+    addSubview(tableView)
   }
 
   func setupConstraints() {
-
+    tableView.snp.makeConstraints { make in
+      make.left.top.bottom.right.equalToSuperview()
+    }
   }
 
   func setupAdditionalConfiguration() {

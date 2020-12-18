@@ -11,21 +11,14 @@ import SnapKit
 final class EventsTableViewCell: UITableViewCell {
 
   // MARK: - Properties
-  fileprivate let identifier = "EventsTableViewCell"
-
-  lazy var eventImage: UIImageView = {
-    let eventImage = UIImageView(frame: .zero)
-    return eventImage
-  }()
-
-  lazy var eventTitle: UILabel = {
-    let eventTitle = UILabel(frame: .zero)
-    return eventTitle
-  }()
+  static let identifier = "EventsTableViewCell"
+  var eventImage: UIImageView = UIImageView(frame: .zero)
+  var eventTitle: UILabel = UILabel(frame: .zero)
 
   // MARK: - Inits
-  init(frame: CGRect) {
-    super.init(style: .default, reuseIdentifier: identifier)
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super.init(style: .default, reuseIdentifier: reuseIdentifier)
+
     setupView()
   }
 
@@ -50,13 +43,13 @@ extension EventsTableViewCell: ViewCodable {
 
     eventTitle.snp.makeConstraints{ make in
       make.centerY.equalTo(eventImage)
-      make.left.equalTo(eventImage).offset(15)
+      make.left.equalTo(eventImage.snp.right).offset(15)
       make.right.equalToSuperview().inset(15)
     }
   }
 
   func setupAdditionalConfiguration() {
-    eventImage.image = UIImage(systemName: "UIBarButtonSystemItemEdit")
-    eventTitle.text = "Nome do Event"
+    eventImage.image = UIImage(systemName: "info.circle")
+    eventTitle.text = "Nome do Evento"
   }
 }
