@@ -9,16 +9,33 @@ import UIKit
 
 final class EventsViewController: UIViewController {
 
+  // MARK: - Properties
   lazy var screen = EventsViewControllerScreen(frame: view.bounds)
+  let viewModel = EventsViewModel()
 
   // MARK: - LoadView
   override func loadView() {
     super.loadView()
     view = screen
     setupView()
+    print(#function)
+  }
+
+  // MARK: - ViewDidLoad
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    print(#function)
+    viewModel.delegate = self
+    fetchEvents()
+  }
+
+  // MARK: - Methods
+  func fetchEvents() {
+    viewModel.getEvents()
   }
 }
 
+// MARK: - ViewCodableExtension
 extension EventsViewController: ViewCodable {
   func buildViewHierarchy() {
 
@@ -35,11 +52,20 @@ extension EventsViewController: ViewCodable {
   }
 }
 
-extension EventsViewController: UITableViewDelegate { }
+// MARK: - TableView Extensions
+
+extension EventsViewController: UITableViewDelegate {
+
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return view.bounds.size.height * 0.2
+  }
+}
 
 extension EventsViewController: UITableViewDataSource {
+
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 5
+    print(viewModel.events.count)
+    return viewModel.events.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,6 +74,21 @@ extension EventsViewController: UITableViewDataSource {
       return UITableViewCell()
     }
 
+    let event = viewModel.events[indexPath.row]
+    cell.configureCell(with: event)
+
     return cell
+  }
+}
+
+// MARK: - ViewModel Extension
+extension EventsViewController: EventsViewModelDelegate {
+  func eventsViewModeldidUpdateEvents() {
+    print(#function)
+    DispatchQueue.main.async {
+      #warning("Trocar o reload data por begin e end update")
+      print(self.viewModel.events.count)
+      self.screen.tableView.reloadData()
+    }
   }
 }

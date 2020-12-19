@@ -25,6 +25,7 @@ final class EventsViewControllerScreen: UIView {
 
 }
 
+// MARK: - ViewCodable Extension
 extension EventsViewControllerScreen: ViewCodable {
   func buildViewHierarchy() {
     addSubview(tableView)
@@ -37,6 +38,6 @@ extension EventsViewControllerScreen: ViewCodable {
   }
 
   func setupAdditionalConfiguration() {
-    backgroundColor = .green
+
   }
 }

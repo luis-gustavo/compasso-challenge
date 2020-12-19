@@ -26,8 +26,15 @@ final class EventsTableViewCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
 
+  // MARK: - Methods
+  func configureCell(with event: Event) {
+    eventTitle.text = event.title
+    #warning("Colocar imagem depois")
+  }
+
 }
 
+// MARK: - ViewCodable Extension
 extension EventsTableViewCell: ViewCodable {
 
   func buildViewHierarchy() {
