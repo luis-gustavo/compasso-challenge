@@ -5,9 +5,10 @@
 //  Created by Luis Gustavo Avelino de Lima Jacinto on 18/12/20.
 //
 
-import Foundation
+import UIKit
 import Alamofire
 import Combine
+import AlamofireImage
 
 struct EventNetworking {
 
@@ -45,7 +46,25 @@ struct EventNetworking {
     .eraseToAnyPublisher()
   }
 
-  static func getEventImage() {
-    AF.requ
+  static fileprivate let imageCache = AutoPurgingImageCache()
+  static func getEventImage(url: URL) -> AnyPublisher<UIImage, NetworkError> {
+
+    if let cachedImage = imageCache.image(withIdentifier: url.absoluteString) {
+      return Result.Publisher(cachedImage).eraseToAnyPublisher()
+    }
+
+    return Future { promise in
+      AF.request(url).responseImage { response in
+        switch response.result {
+        case .success(let image):
+          imageCache.add(image, withIdentifier: url.absoluteString)
+          promise(.success(image))
+        case .failure(let error):
+          promise(.failure(.dependency(error)))
+        }
+      }
+    }
+    .eraseToAnyPublisher()
+
   }
 }
