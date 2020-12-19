@@ -16,8 +16,9 @@ final class EventsViewModel {
       delegate?.eventsViewModeldidUpdateEvents()
     }
   }
-  var cancellables = Set<AnyCancellable>()
-  var delegate: EventsViewModelDelegate?
+  var cachedImages = [Int : UIImage]()
+  fileprivate var cancellables = Set<AnyCancellable>()
+  fileprivate var delegate: EventsViewModelDelegate?
 
   func getEvents() {
     EventNetworking
@@ -32,8 +33,11 @@ final class EventsViewModel {
         break
       }
     } receiveValue: { events in
-      events.forEach({ print($0) })
       self.events = events
     }.store(in: &cancellables)
+  }
+
+  func getEventImage(eventId: Int) {
+    
   }
 }

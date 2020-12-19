@@ -44,4 +44,8 @@ struct EventNetworking {
     .mapError({ $0 as? NetworkError ?? .unknown($0) })
     .eraseToAnyPublisher()
   }
+
+  static func getEventImage() {
+    AF.requ
+  }
 }

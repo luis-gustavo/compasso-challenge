@@ -18,13 +18,11 @@ final class EventsViewController: UIViewController {
     super.loadView()
     view = screen
     setupView()
-    print(#function)
   }
 
   // MARK: - ViewDidLoad
   override func viewDidLoad() {
     super.viewDidLoad()
-    print(#function)
     viewModel.delegate = self
     fetchEvents()
   }
@@ -57,14 +55,13 @@ extension EventsViewController: ViewCodable {
 extension EventsViewController: UITableViewDelegate {
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return view.bounds.size.height * 0.2
+    return view.bounds.size.height * 0.1
   }
 }
 
 extension EventsViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    print(viewModel.events.count)
     return viewModel.events.count
   }
 
@@ -84,11 +81,7 @@ extension EventsViewController: UITableViewDataSource {
 // MARK: - ViewModel Extension
 extension EventsViewController: EventsViewModelDelegate {
   func eventsViewModeldidUpdateEvents() {
-    print(#function)
-    DispatchQueue.main.async {
-      #warning("Trocar o reload data por begin e end update")
-      print(self.viewModel.events.count)
-      self.screen.tableView.reloadData()
-    }
+    #warning("Trocar o reload data por begin e end update")
+    self.screen.tableView.reloadData()
   }
 }
