@@ -25,13 +25,6 @@ final class EventsTableViewCell: UITableViewCell {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
-  // MARK: - Methods
-  func configureCell(with event: Event) {
-    eventTitle.text = event.title
-    #warning("Colocar imagem depois")
-  }
-
 }
 
 // MARK: - ViewCodable Extension
@@ -56,7 +49,6 @@ extension EventsTableViewCell: ViewCodable {
   }
 
   func setupAdditionalConfiguration() {
-    eventImage.image = UIImage(systemName: "info.circle")
-    eventTitle.text = "Nome do Evento"
+    eventTitle.numberOfLines = 5
   }
 }

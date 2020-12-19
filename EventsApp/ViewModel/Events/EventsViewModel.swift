@@ -5,7 +5,7 @@
 //  Created by Luis Gustavo Avelino de Lima Jacinto on 19/12/20.
 //
 
-import Foundation
+import UIKit
 import Combine
 
 final class EventsViewModel {
@@ -16,9 +16,9 @@ final class EventsViewModel {
       delegate?.eventsViewModeldidUpdateEvents()
     }
   }
-  var cachedImages = [Int : UIImage]()
+  var delegate: EventsViewModelDelegate?
   fileprivate var cancellables = Set<AnyCancellable>()
-  fileprivate var delegate: EventsViewModelDelegate?
+
 
   func getEvents() {
     EventNetworking
@@ -37,7 +37,23 @@ final class EventsViewModel {
     }.store(in: &cancellables)
   }
 
-  func getEventImage(eventId: Int) {
-    
+  func getEventImage(event: Event, _ completion: @escaping (UIImage) -> Void) {
+    guard let url = URL(string: event.image) else {
+      debugPrint("URL must exist from image path")
+      return
+    }
+
+    EventNetworking
+      .getEventImage(url: url).sink { completion in
+        switch completion {
+        case let .failure(networkError):
+          print(networkError)
+        case .finished:
+          debugPrint("Finished")
+          break
+        }
+      } receiveValue: { image in
+        completion(image)
+      }.store(in: &cancellables)
   }
 }

@@ -35,13 +35,9 @@ final class EventsViewController: UIViewController {
 
 // MARK: - ViewCodableExtension
 extension EventsViewController: ViewCodable {
-  func buildViewHierarchy() {
+  func buildViewHierarchy() { }
 
-  }
-
-  func setupConstraints() {
-
-  }
+  func setupConstraints() { }
 
   func setupAdditionalConfiguration() {
     screen.tableView.register(EventsTableViewCell.self, forCellReuseIdentifier: EventsTableViewCell.identifier)
@@ -72,7 +68,13 @@ extension EventsViewController: UITableViewDataSource {
     }
 
     let event = viewModel.events[indexPath.row]
-    cell.configureCell(with: event)
+    cell.eventTitle.text = event.title
+
+    DispatchQueue.global().async { [weak self] in
+      self?.viewModel.getEventImage(event: event, { image in
+        cell.eventImage.image = image
+      })
+    }
 
     return cell
   }

@@ -37,7 +37,5 @@ extension EventsViewControllerScreen: ViewCodable {
     }
   }
 
-  func setupAdditionalConfiguration() {
-
-  }
+  func setupAdditionalConfiguration() { }
 }
