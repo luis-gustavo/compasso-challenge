@@ -13,17 +13,17 @@ final class MainCoordinator: Coordinatable {
 
   init(navigationController: UINavigationController) {
     self.navigationController = navigationController
+    navigationController.navigationBar.isTranslucent = false
   }
 
   func start() {
     let eventsViewController = EventsViewController()
     eventsViewController.coordinator = self
-    navigationController.pushViewController(eventsViewController, animated: false)
+    navigationController.pushViewController(eventsViewController, animated: true)
   }
 
   func showEventDetail(event: Event) {
-    print(#function)
     let eventDetailViewController = EventDetailViewController(event: event)
-    navigationController.pushViewController(eventDetailViewController, animated: false)
+    navigationController.pushViewController(eventDetailViewController, animated: true)
   }
 }

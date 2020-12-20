@@ -31,6 +31,7 @@
 		6EB52F29258D4FC30059C1AB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6EB52F28258D4FC30059C1AB /* SnapKit */; };
 		6ECBCF65258F7D26003B4FE2 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECBCF64258F7D26003B4FE2 /* EventDetailViewController.swift */; };
 		6ECBCF6D258F7D65003B4FE2 /* EventDetailViewControllerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECBCF6C258F7D65003B4FE2 /* EventDetailViewControllerScreen.swift */; };
+		6ECBCF77258FB3B8003B4FE2 /* CheckInAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECBCF76258FB3B8003B4FE2 /* CheckInAlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		6EB52F22258D4E250059C1AB /* EventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
 		6ECBCF64258F7D26003B4FE2 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		6ECBCF6C258F7D65003B4FE2 /* EventDetailViewControllerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewControllerScreen.swift; sourceTree = "<group>"; };
+		6ECBCF76258FB3B8003B4FE2 /* CheckInAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,15 +110,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6E01737A258E774600388E0F /* Events */ = {
-			isa = PBXGroup;
-			children = (
-				6E01737B258E775200388E0F /* EventsViewModel.swift */,
-				6E017380258E82FE00388E0F /* EventsViewModelDelegate.swift */,
-			);
-			path = Events;
-			sourceTree = "<group>";
-		};
 		6EB52E73258D3E4B0059C1AB = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +197,7 @@
 		6EB52F02258D48990059C1AB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6ECBCF75258FB3A7003B4FE2 /* Components */,
 				6ECBCF63258F7D17003B4FE2 /* EventDetail */,
 				6EB52F14258D49E10059C1AB /* Events */,
 			);
@@ -213,8 +207,8 @@
 		6EB52F03258D489C0059C1AB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				6ECBCF71258F821E003B4FE2 /* EventDetail */,
-				6E01737A258E774600388E0F /* Events */,
+				6E017380258E82FE00388E0F /* EventsViewModelDelegate.swift */,
+				6E01737B258E775200388E0F /* EventsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -254,11 +248,12 @@
 			path = EventDetail;
 			sourceTree = "<group>";
 		};
-		6ECBCF71258F821E003B4FE2 /* EventDetail */ = {
+		6ECBCF75258FB3A7003B4FE2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				6ECBCF76258FB3B8003B4FE2 /* CheckInAlertView.swift */,
 			);
-			path = EventDetail;
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,6 +400,7 @@
 				6EB52EC8258D41F90059C1AB /* HTTPStatusCode.swift in Sources */,
 				6EB52F23258D4E250059C1AB /* EventsTableViewCell.swift in Sources */,
 				6EB52ED2258D42220059C1AB /* NetworkError.swift in Sources */,
+				6ECBCF77258FB3B8003B4FE2 /* CheckInAlertView.swift in Sources */,
 				6EB52EDD258D42DA0059C1AB /* EventNetworking.swift in Sources */,
 				6EB52E80258D3E4B0059C1AB /* AppDelegate.swift in Sources */,
 				6E017381258E82FE00388E0F /* EventsViewModelDelegate.swift in Sources */,

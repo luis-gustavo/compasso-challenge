@@ -12,6 +12,7 @@ final class EventDetailViewController: UIViewController {
   // MARK: - Properties
   lazy var screen = EventDetailViewControllerScreen(frame: view.bounds)
   let event: Event
+  let viewModel = EventsViewModel()
 
   // MARK: - Inits
   init(event: Event) {
@@ -23,11 +24,42 @@ final class EventDetailViewController: UIViewController {
     fatalError("init(coder:) has not been implemented")
   }
 
+  // MARK: - ViewDidLoad
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setup()
+  }
+
   // MARK: - LoadView
   override func loadView() {
     super.loadView()
-
     view = screen
+    setupView()
+  }
+
+  // MARK: - Methods
+  func setup() {
+    setupEventDescription()
+    setupEventImage()
+  }
+}
+
+// MARK: - Setup methods Extension
+extension EventDetailViewController {
+  fileprivate func setupEventDescription() {
+    screen.eventDescription.text = event.description
+  }
+
+  fileprivate func setupEventImage() {
+    DispatchQueue.global().async { [weak self] in
+      guard let self = self else { return }
+      self.viewModel.getEventImage(event: self.event) { [weak self] (image) in
+        guard let self = self else { return }
+        DispatchQueue.main.async {
+          self.screen.eventImage.image = image
+        }
+      }
+    }
   }
 }
 
@@ -38,7 +70,6 @@ extension EventDetailViewController: ViewCodable {
   func setupConstraints() { }
 
   func setupAdditionalConfiguration() {
-    navigationController?.navigationBar.prefersLargeTitles = true
     title = event.title
   }
 }

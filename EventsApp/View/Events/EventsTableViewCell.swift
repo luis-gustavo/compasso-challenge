@@ -12,8 +12,8 @@ final class EventsTableViewCell: UITableViewCell {
 
   // MARK: - Properties
   static let identifier = "EventsTableViewCell"
-  var eventImage: UIImageView = UIImageView(frame: .zero)
-  var eventTitle: UILabel = UILabel(frame: .zero)
+  let eventImage = UIImageView(frame: .zero)
+  let eventTitle = UILabel(frame: .zero)
 
   // MARK: - Inits
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

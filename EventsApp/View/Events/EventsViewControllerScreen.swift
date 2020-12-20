@@ -11,7 +11,7 @@ import SnapKit
 final class EventsViewControllerScreen: UIView {
 
   // MARK: - Properties
-  var tableView: UITableView = UITableView(frame: .zero)
+  let tableView = UITableView(frame: .zero)
 
   // MARK: - Inits
   override init(frame: CGRect) {
