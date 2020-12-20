@@ -12,6 +12,7 @@ final class EventsViewController: UIViewController {
   // MARK: - Properties
   lazy var screen = EventsViewControllerScreen(frame: view.bounds)
   let viewModel = EventsViewModel()
+  weak var coordinator: MainCoordinator?
 
   // MARK: - LoadView
   override func loadView() {
@@ -52,6 +53,11 @@ extension EventsViewController: UITableViewDelegate {
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return view.bounds.size.height * 0.1
+  }
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let event = viewModel.events[indexPath.row]
+    
   }
 }
 

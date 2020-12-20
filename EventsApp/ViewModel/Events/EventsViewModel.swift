@@ -19,7 +19,7 @@ final class EventsViewModel {
   var delegate: EventsViewModelDelegate?
   fileprivate var cancellables = Set<AnyCancellable>()
 
-
+  // MARK: - Methods
   func getEvents() {
     EventNetworking
       .getEvents()

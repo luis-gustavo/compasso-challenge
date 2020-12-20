@@ -15,6 +15,12 @@ final class MainCoordinator: Coordinatable {
 
   func start() {
     let eventsViewController = EventsViewController()
+    eventsViewController.coordinator = self
     navigationController.pushViewController(eventsViewController, animated: true)
+  }
+
+  func showEventDetail(event: Event) {
+    let eventDetailViewController = EventDetailViewController(event: event)
+    navigationController.pushViewController(eventDetailViewController, animated: true)
   }
 }
