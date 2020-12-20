@@ -213,6 +213,7 @@
 		6EB52F03258D489C0059C1AB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				6ECBCF71258F821E003B4FE2 /* EventDetail */,
 				6E01737A258E774600388E0F /* Events */,
 			);
 			path = ViewModel;
@@ -249,6 +250,13 @@
 			children = (
 				6ECBCF64258F7D26003B4FE2 /* EventDetailViewController.swift */,
 				6ECBCF6C258F7D65003B4FE2 /* EventDetailViewControllerScreen.swift */,
+			);
+			path = EventDetail;
+			sourceTree = "<group>";
+		};
+		6ECBCF71258F821E003B4FE2 /* EventDetail */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = EventDetail;
 			sourceTree = "<group>";

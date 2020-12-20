@@ -30,3 +30,15 @@ final class EventDetailViewController: UIViewController {
     view = screen
   }
 }
+
+// MARK: - ViewCodable Extension
+extension EventDetailViewController: ViewCodable {
+  func buildViewHierarchy() { }
+
+  func setupConstraints() { }
+
+  func setupAdditionalConfiguration() {
+    navigationController?.navigationBar.prefersLargeTitles = true
+    title = event.title
+  }
+}

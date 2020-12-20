@@ -24,16 +24,11 @@ final class EventDetailViewControllerScreen: UIView {
 
 // MARK: - ViewCodable Extension
 extension EventDetailViewControllerScreen: ViewCodable {
-  func buildViewHierarchy() {
+  func buildViewHierarchy() { }
 
-  }
-
-  func setupConstraints() {
-
-  }
+  func setupConstraints() { }
 
   func setupAdditionalConfiguration() {
     backgroundColor = .green
   }
-
 }

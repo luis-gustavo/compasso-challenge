@@ -50,6 +50,5 @@ extension EventsTableViewCell: ViewCodable {
 
   func setupAdditionalConfiguration() {
     eventTitle.numberOfLines = 5
-    selectionStyle = .none
   }
 }

@@ -24,13 +24,32 @@ final class EventsViewController: UIViewController {
   // MARK: - ViewDidLoad
   override func viewDidLoad() {
     super.viewDidLoad()
-    viewModel.delegate = self
+    setup()
     fetchEvents()
   }
 
   // MARK: - Methods
   func fetchEvents() {
     viewModel.getEvents()
+  }
+
+  func setup() {
+    setupTableView()
+    setupViewModel()
+  }
+
+}
+
+// MARK: - Setup methods Extension
+extension EventsViewController {
+  fileprivate func setupTableView() {
+    screen.tableView.register(EventsTableViewCell.self, forCellReuseIdentifier: EventsTableViewCell.identifier)
+    screen.tableView.delegate = self
+    screen.tableView.dataSource = self
+  }
+
+  fileprivate func setupViewModel() {
+    viewModel.delegate = self
   }
 }
 
@@ -41,9 +60,8 @@ extension EventsViewController: ViewCodable {
   func setupConstraints() { }
 
   func setupAdditionalConfiguration() {
-    screen.tableView.register(EventsTableViewCell.self, forCellReuseIdentifier: EventsTableViewCell.identifier)
-    screen.tableView.delegate = self
-    screen.tableView.dataSource = self
+    navigationController?.navigationBar.prefersLargeTitles = true
+    title = "Events"
   }
 }
 
@@ -57,7 +75,8 @@ extension EventsViewController: UITableViewDelegate {
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let event = viewModel.events[indexPath.row]
-    
+    coordinator?.showEventDetail(event: event)
+    tableView.deselectRow(at: indexPath, animated: true)
   }
 }
 
@@ -78,7 +97,9 @@ extension EventsViewController: UITableViewDataSource {
 
     DispatchQueue.global().async { [weak self] in
       self?.viewModel.getEventImage(event: event, { image in
-        cell.eventImage.image = image
+        DispatchQueue.main.async { [weak cell] in
+          cell?.eventImage.image = image
+        }
       })
     }
 
