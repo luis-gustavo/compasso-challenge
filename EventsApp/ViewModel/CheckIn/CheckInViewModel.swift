@@ -6,15 +6,21 @@
 //
 
 import Foundation
-
-
+import Combine
 
 final class CheckInViewModel {
 
   // MARK: - Properties
   var delegate: CheckInViewModelDelegate?
-  private var name = ""
-  private var email = ""
+  let eventId: String
+  fileprivate var name = ""
+  fileprivate var email = ""
+  fileprivate var cancellabe = Set<AnyCancellable>()
+
+  // MARK: - Init
+  init(eventId: String) {
+    self.eventId = eventId
+  }
 
   // MARK: - Methods
   func validateForm(name: String, email: String) {
@@ -40,6 +46,28 @@ final class CheckInViewModel {
         delegate?.emailStateChanged(false)
       }
     }
+  }
+
+  func makeCheckIn() {
+    let checkIn = CheckIn(eventId: eventId, name: name, email: email)
+
+    CheckInNetworking
+      .makeCheckIn(checkIn)
+      .receive(on: RunLoop.main)
+      .sink { completion in
+        switch completion {
+        case let .failure(networkError):
+          print(networkError)
+        case .finished:
+          debugPrint("Finished")
+          break
+        }
+      } receiveValue: { httpStatusCode in
+        switch httpStatusCode.rawValue {
+        case 200...299: debugPrint("success")
+        default: debugPrint("error")
+        }
+      }.store(in: &cancellabe)
   }
 
   fileprivate func isNameValid(_ name: String) -> Bool {

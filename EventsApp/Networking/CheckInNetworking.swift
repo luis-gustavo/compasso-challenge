@@ -11,7 +11,7 @@ import Alamofire
 
 struct CheckInNetworking {
 
-  func makeCheckIn(_ checkIn: CheckIn) -> AnyPublisher<HTTPStatusCode, NetworkError> {
+  static func makeCheckIn(_ checkIn: CheckIn) -> AnyPublisher<HTTPStatusCode, NetworkError> {
     return Future<NetworkResponse<HTTPStatusCode>, NetworkError> { promise in
       AF.request(Api.checkinUrl, method: .post, parameters: checkIn, encoder: Alamofire.JSONParameterEncoder.default).responseData { response  in
         guard let statusCode = response.response?.status else {

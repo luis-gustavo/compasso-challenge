@@ -13,7 +13,7 @@ final class EventDetailViewController: UIViewController {
   lazy var screen = EventDetailViewControllerScreen(frame: view.bounds)
   let event: Event
   let eventsViewModel = EventsViewModel()
-  let checkInViewModel = CheckInViewModel()
+  lazy var checkInViewModel = CheckInViewModel(eventId: event.id)
   var checkInAlert: CheckInAlertViewController {
     let alert = CheckInAlertViewController()
     alert.providesPresentationContextTransitionStyle = true
@@ -112,7 +112,7 @@ extension EventDetailViewController: CheckInAlertViewDelegate {
   }
 
   func confirmButtonClicked(_ sender: CheckInAlertViewController) {
-    print(#function)
+    checkInViewModel.makeCheckIn()
   }
 }
 
