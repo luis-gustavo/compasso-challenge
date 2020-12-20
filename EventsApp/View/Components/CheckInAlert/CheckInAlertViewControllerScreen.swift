@@ -14,8 +14,8 @@ final class CheckInAlertViewControllerScreen: UIView {
   let descriptionLabel = UILabel(frame: .zero)
   let nameTextField = UITextField(frame: .zero)
   let emailTextField = UITextField(frame: .zero)
-  let cancelButton = UIButton(frame: .zero)
-  let confirmButton = UIButton(frame: .zero)
+  let cancelButton = UIButton(type: .close)
+  let confirmButton = UIButton(type: .system)
   var delegate: CheckInAlertViewDelegate?
 
   // MARK: - Inits
@@ -96,10 +96,8 @@ extension CheckInAlertViewControllerScreen: ViewCodable {
     emailTextField.keyboardType = .emailAddress
 
     cancelButton.setTitle("Cancel", for: .normal)
-    cancelButton.setTitleColor(UIColor.systemRed, for: .normal)
 
     confirmButton.setTitle("Confirm", for: .normal)
-    confirmButton.setTitleColor(UIColor.systemBlue, for: .normal)
 
     backgroundColor = UIColor.systemGray
   }

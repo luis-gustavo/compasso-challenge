@@ -9,7 +9,7 @@ import Foundation
 
 struct Api {
 
-  static fileprivate let path = "http://5f5a8f24d44d640016169133.mockapi.io/api/events"
+  static fileprivate let path = "http://5f5a8f24d44d640016169133.mockapi.io/api"
 
   static fileprivate var hostUrl: URL {
     guard let hostUrl = URL(string: path) else {
@@ -21,10 +21,16 @@ struct Api {
 
   static var eventsUrl: URL {
     return hostUrl
+      .appendingPathComponent("events")
   }
 
   static func eventBy(id: Int) -> URL {
-    return hostUrl
+    return eventsUrl
       .appendingPathComponent("\(id)")
+  }
+
+  static var checkinUrl: URL {
+    return hostUrl
+      .appendingPathComponent("checkin")
   }
 }

@@ -9,7 +9,8 @@ import UIKit
 
 protocol CheckInAlertViewDelegate {
   func cancelButtonClicked(_ sender: CheckInAlertViewController)
-  func confirmButtonClicked(_ sender: CheckInAlertViewController, with name: String, andEmail email: String)
+  func confirmButtonClicked(_ sender: CheckInAlertViewController)
+  func textFieldEditingChanged(name: UITextField, email: UITextField)
 }
 
 final class CheckInAlertViewController: UIViewController {
@@ -21,11 +22,8 @@ final class CheckInAlertViewController: UIViewController {
   // MARK: - Inits
   init() {
     super.init(nibName: nil, bundle: nil)
-
     setupView()
-
-    screen.cancelButton.addTarget(self, action: #selector(cancelButtonClicked), for: .touchUpInside)
-    screen.confirmButton.addTarget(self, action: #selector(confirmButtonClicked), for: .touchUpInside)
+    setup()
   }
 
   required init?(coder: NSCoder) {
@@ -34,17 +32,52 @@ final class CheckInAlertViewController: UIViewController {
 
   // MARK: - Deinit
   deinit {
-    screen.cancelButton.removeTarget(screen.cancelButton, action: nil, for: .touchUpInside)
-    screen.confirmButton.removeTarget(screen.confirmButton, action: nil, for: .touchUpInside)
+    removeTargets()
   }
 
   // MARK: - Methods
+  func setup() {
+    addTargets()
+    setupDelegates()
+  }
+
   @objc private func cancelButtonClicked() {
     delegate?.cancelButtonClicked(self)
   }
 
   @objc private func confirmButtonClicked() {
-    delegate?.confirmButtonClicked(self, with: screen.nameTextField.text ?? "", andEmail: screen.emailTextField.text ?? "")
+    delegate?.confirmButtonClicked(self)
+  }
+
+  @objc func nameEditingChanged(textField: UITextField) {
+    delegate?.textFieldEditingChanged(name: screen.nameTextField, email: screen.emailTextField)
+  }
+
+  @objc func emailEditingChanged(textField: UITextField) {
+    delegate?.textFieldEditingChanged(name: screen.nameTextField, email: screen.emailTextField)
+  }
+}
+
+// MARK: - Setup Methods Extension
+extension CheckInAlertViewController {
+  fileprivate func addTargets() {
+    screen.cancelButton.addTarget(self, action: #selector(cancelButtonClicked), for: .touchUpInside)
+    screen.confirmButton.addTarget(self, action: #selector(confirmButtonClicked), for: .touchUpInside)
+    screen.nameTextField.addTarget(self, action: #selector(nameEditingChanged), for: .editingChanged)
+    screen.emailTextField.addTarget(self, action: #selector(emailEditingChanged), for: .editingChanged)
+    hideKeyboardWhenTappedAround()
+  }
+
+  fileprivate func removeTargets() {
+    screen.cancelButton.removeTarget(screen.cancelButton, action: nil, for: .touchUpInside)
+    screen.confirmButton.removeTarget(screen.confirmButton, action: nil, for: .touchUpInside)
+    screen.nameTextField.removeTarget(self, action: nil, for: .editingChanged)
+    screen.emailTextField.removeTarget(self, action: nil, for: .editingChanged)
+  }
+
+  fileprivate func setupDelegates() {
+    screen.emailTextField.delegate = self
+    screen.nameTextField.delegate = self
   }
 }
 
@@ -63,7 +96,17 @@ extension CheckInAlertViewController: ViewCodable {
     }
   }
 
-  func setupAdditionalConfiguration() {
+  func setupAdditionalConfiguration() { }
+}
 
+// MARK: - UITextFieldDelegate Extension
+extension CheckInAlertViewController: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    if textField == screen.nameTextField {
+      screen.emailTextField.becomeFirstResponder()
+    } else {
+      textField.resignFirstResponder()
+    }
+    return true
   }
 }

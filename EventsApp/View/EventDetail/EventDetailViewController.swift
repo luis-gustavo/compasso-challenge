@@ -12,7 +12,17 @@ final class EventDetailViewController: UIViewController {
   // MARK: - Properties
   lazy var screen = EventDetailViewControllerScreen(frame: view.bounds)
   let event: Event
-  let viewModel = EventsViewModel()
+  let eventsViewModel = EventsViewModel()
+  let checkInViewModel = CheckInViewModel()
+  var checkInAlert: CheckInAlertViewController {
+    let alert = CheckInAlertViewController()
+    alert.providesPresentationContextTransitionStyle = true
+    alert.definesPresentationContext = true
+    alert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+    alert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+    alert.delegate = self
+    return alert
+  }
 
   // MARK: - Inits
   init(event: Event) {
@@ -42,6 +52,7 @@ final class EventDetailViewController: UIViewController {
     setupEventDescription()
     setupEventImage()
     setupCheckInButtonDelegate()
+    setupViewCheckInViewModelDelegate()
   }
 }
 
@@ -55,10 +66,14 @@ extension EventDetailViewController {
     screen.checkinButton.delegate = self
   }
 
+  fileprivate func setupViewCheckInViewModelDelegate() {
+    checkInViewModel.delegate = self
+  }
+
   fileprivate func setupEventImage() {
     DispatchQueue.global().async { [weak self] in
       guard let self = self else { return }
-      self.viewModel.getEventImage(event: self.event) { [weak self] (image) in
+      self.eventsViewModel.getEventImage(event: self.event) { [weak self] (image) in
         guard let self = self else { return }
         DispatchQueue.main.async {
           self.screen.eventImage.image = image
@@ -82,23 +97,44 @@ extension EventDetailViewController: ViewCodable {
 // MARK: - CheckInButtonDelegate
 extension EventDetailViewController: CheckInButtonDelegate {
   func buttonClicked(_ sender: CheckInButton) {
-    let customAlert = CheckInAlertViewController()
-    customAlert.providesPresentationContextTransitionStyle = true
-    customAlert.definesPresentationContext = true
-    customAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-    customAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-    customAlert.delegate = self
-    present(customAlert, animated: true, completion: nil)
+    present(checkInAlert, animated: true, completion: nil)
   }
 }
 
 // MARK: - CheckInAlertViewDelegate Extension
 extension EventDetailViewController: CheckInAlertViewDelegate {
-  func cancelButtonClicked(_ sender: CheckInAlertViewController) {
-
+  func textFieldEditingChanged(name: UITextField, email: UITextField) {
+    checkInViewModel.validateForm(name: name.text ?? "", email: email.text ?? "")
   }
 
-  func confirmButtonClicked(_ sender: CheckInAlertViewController, with name: String, andEmail email: String) {
+  func cancelButtonClicked(_ sender: CheckInAlertViewController) {
+    dismiss(animated: true, completion: nil)
+  }
 
+  func confirmButtonClicked(_ sender: CheckInAlertViewController) {
+    print(#function)
+  }
+}
+
+// MARK: - CheckInViewModelDelegate Extension
+extension EventDetailViewController: CheckInViewModelDelegate {
+  func confirmButtonStateChanged(_ enable: Bool) {
+//    checkInAlert.screen.confirmButton.isUserInteractionEnabled = enable
+  }
+
+  func nameStateChanged(_ isValid: Bool) {
+    if (isValid) {
+
+    } else {
+
+    }
+  }
+
+  func emailStateChanged(_ isValid: Bool) {
+    if (isValid) {
+
+    } else {
+
+    }
   }
 }
