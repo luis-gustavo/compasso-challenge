@@ -1,5 +1,5 @@
 //
-//  CheckInAlertView.swift
+//  CheckInAlertViewControllerScreen.swift
 //  EventsApp
 //
 //  Created by Luis Gustavo Avelino de Lima Jacinto on 20/12/20.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CheckInAlertView: UIViewController {
+final class CheckInAlertViewControllerScreen: UIView {
 
   // MARK: - Properties
   let titleLabel = UILabel(frame: .zero)
@@ -16,12 +16,12 @@ final class CheckInAlertView: UIViewController {
   let emailTextField = UITextField(frame: .zero)
   let cancelButton = UIButton(frame: .zero)
   let confirmButton = UIButton(frame: .zero)
+  var delegate: CheckInAlertViewDelegate?
 
   // MARK: - Inits
-  init() {
-    super.init(nibName: nil, bundle: nil)
+  override init(frame: CGRect) {
+    super.init(frame: frame)
     setupView()
-    nameTextField.becomeFirstResponder()
   }
 
   required init?(coder: NSCoder) {
@@ -30,14 +30,14 @@ final class CheckInAlertView: UIViewController {
 }
 
 // MARK: - ViewCodable Extension
-extension CheckInAlertView: ViewCodable {
+extension CheckInAlertViewControllerScreen: ViewCodable {
   func buildViewHierarchy() {
-    view.addSubview(titleLabel)
-    view.addSubview(descriptionLabel)
-    view.addSubview(nameTextField)
-    view.addSubview(emailTextField)
-    view.addSubview(cancelButton)
-    view.addSubview(confirmButton)
+    addSubview(titleLabel)
+    addSubview(descriptionLabel)
+    addSubview(nameTextField)
+    addSubview(emailTextField)
+    addSubview(cancelButton)
+    addSubview(confirmButton)
   }
 
   func setupConstraints() {
@@ -56,14 +56,14 @@ extension CheckInAlertView: ViewCodable {
 
     nameTextField.snp.makeConstraints { make in
       make.left.equalToSuperview().offset(10)
-      make.right.top.equalToSuperview().inset(10)
+      make.right.equalToSuperview().inset(10)
       make.top.equalTo(descriptionLabel.snp.bottom).offset(20)
       make.height.equalToSuperview().multipliedBy(0.1)
     }
 
-    nameTextField.snp.makeConstraints { make in
+    emailTextField.snp.makeConstraints { make in
       make.left.equalToSuperview().offset(10)
-      make.right.top.equalToSuperview().inset(10)
+      make.right.equalToSuperview().inset(10)
       make.top.equalTo(nameTextField.snp.bottom).offset(10)
       make.height.equalToSuperview().multipliedBy(0.1)
     }
@@ -83,8 +83,12 @@ extension CheckInAlertView: ViewCodable {
 
   func setupAdditionalConfiguration() {
     titleLabel.text = "Check In"
+    titleLabel.textAlignment = .center
+    titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
 
     descriptionLabel.text = "Type your information to make check in the event"
+    descriptionLabel.textAlignment = .center
+    descriptionLabel.numberOfLines = 5
 
     nameTextField.placeholder = "Name"
 
@@ -92,10 +96,11 @@ extension CheckInAlertView: ViewCodable {
     emailTextField.keyboardType = .emailAddress
 
     cancelButton.setTitle("Cancel", for: .normal)
-    cancelButton.tintColor = .red
+    cancelButton.setTitleColor(UIColor.systemRed, for: .normal)
 
     confirmButton.setTitle("Confirm", for: .normal)
-    confirmButton.tintColor = .blue
+    confirmButton.setTitleColor(UIColor.systemBlue, for: .normal)
+
+    backgroundColor = UIColor.systemGray
   }
 }
-

@@ -12,11 +12,11 @@ final class EventDetailViewControllerScreen: UIView {
   // MARK: - Properties
   let eventImage = UIImageView(frame: .zero)
   let eventDescription = UILabel(frame: .zero)
-  let checkinButton = UIButton(frame: .zero)
+  let checkinButton = CheckInButton(frame: .zero)
 
   // MARK: - Inits
   override init(frame: CGRect) {
-    super.init(frame: frame)
+    super.init(frame: CGRect(origin: .zero, size: CGSize(width: 200, height: 200)))
     setupView()
   }
 

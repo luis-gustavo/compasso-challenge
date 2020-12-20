@@ -31,7 +31,9 @@
 		6EB52F29258D4FC30059C1AB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6EB52F28258D4FC30059C1AB /* SnapKit */; };
 		6ECBCF65258F7D26003B4FE2 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECBCF64258F7D26003B4FE2 /* EventDetailViewController.swift */; };
 		6ECBCF6D258F7D65003B4FE2 /* EventDetailViewControllerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECBCF6C258F7D65003B4FE2 /* EventDetailViewControllerScreen.swift */; };
-		6ECBCF77258FB3B8003B4FE2 /* CheckInAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECBCF76258FB3B8003B4FE2 /* CheckInAlertView.swift */; };
+		6ECBCF77258FB3B8003B4FE2 /* CheckInAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECBCF76258FB3B8003B4FE2 /* CheckInAlertViewController.swift */; };
+		6ECBCF7C258FB82D003B4FE2 /* CheckInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECBCF7B258FB82D003B4FE2 /* CheckInButton.swift */; };
+		6ECBCF88258FC078003B4FE2 /* CheckInAlertViewControllerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECBCF87258FC078003B4FE2 /* CheckInAlertViewControllerScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +81,9 @@
 		6EB52F22258D4E250059C1AB /* EventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
 		6ECBCF64258F7D26003B4FE2 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		6ECBCF6C258F7D65003B4FE2 /* EventDetailViewControllerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewControllerScreen.swift; sourceTree = "<group>"; };
-		6ECBCF76258FB3B8003B4FE2 /* CheckInAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInAlertView.swift; sourceTree = "<group>"; };
+		6ECBCF76258FB3B8003B4FE2 /* CheckInAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInAlertViewController.swift; sourceTree = "<group>"; };
+		6ECBCF7B258FB82D003B4FE2 /* CheckInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInButton.swift; sourceTree = "<group>"; };
+		6ECBCF87258FC078003B4FE2 /* CheckInAlertViewControllerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInAlertViewControllerScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,9 +255,19 @@
 		6ECBCF75258FB3A7003B4FE2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				6ECBCF76258FB3B8003B4FE2 /* CheckInAlertView.swift */,
+				6ECBCF86258FC067003B4FE2 /* CheckInAlert */,
+				6ECBCF7B258FB82D003B4FE2 /* CheckInButton.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		6ECBCF86258FC067003B4FE2 /* CheckInAlert */ = {
+			isa = PBXGroup;
+			children = (
+				6ECBCF76258FB3B8003B4FE2 /* CheckInAlertViewController.swift */,
+				6ECBCF87258FC078003B4FE2 /* CheckInAlertViewControllerScreen.swift */,
+			);
+			path = CheckInAlert;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,13 +414,15 @@
 				6EB52EC8258D41F90059C1AB /* HTTPStatusCode.swift in Sources */,
 				6EB52F23258D4E250059C1AB /* EventsTableViewCell.swift in Sources */,
 				6EB52ED2258D42220059C1AB /* NetworkError.swift in Sources */,
-				6ECBCF77258FB3B8003B4FE2 /* CheckInAlertView.swift in Sources */,
+				6ECBCF77258FB3B8003B4FE2 /* CheckInAlertViewController.swift in Sources */,
 				6EB52EDD258D42DA0059C1AB /* EventNetworking.swift in Sources */,
 				6EB52E80258D3E4B0059C1AB /* AppDelegate.swift in Sources */,
 				6E017381258E82FE00388E0F /* EventsViewModelDelegate.swift in Sources */,
 				6EB52EF6258D48600059C1AB /* ViewCodable.swift in Sources */,
+				6ECBCF7C258FB82D003B4FE2 /* CheckInButton.swift in Sources */,
 				6EB52EFB258D48710059C1AB /* Coordinatable.swift in Sources */,
 				6EB52EBE258D3F630059C1AB /* Event.swift in Sources */,
+				6ECBCF88258FC078003B4FE2 /* CheckInAlertViewControllerScreen.swift in Sources */,
 				6EB52EC3258D40CD0059C1AB /* Api.swift in Sources */,
 				6EB52F10258D49620059C1AB /* MainCoordinator.swift in Sources */,
 				6ECBCF6D258F7D65003B4FE2 /* EventDetailViewControllerScreen.swift in Sources */,

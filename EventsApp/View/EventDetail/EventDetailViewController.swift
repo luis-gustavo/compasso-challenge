@@ -41,6 +41,7 @@ final class EventDetailViewController: UIViewController {
   func setup() {
     setupEventDescription()
     setupEventImage()
+    setupCheckInButtonDelegate()
   }
 }
 
@@ -48,6 +49,10 @@ final class EventDetailViewController: UIViewController {
 extension EventDetailViewController {
   fileprivate func setupEventDescription() {
     screen.eventDescription.text = event.description
+  }
+
+  fileprivate func setupCheckInButtonDelegate() {
+    screen.checkinButton.delegate = self
   }
 
   fileprivate func setupEventImage() {
@@ -71,5 +76,29 @@ extension EventDetailViewController: ViewCodable {
 
   func setupAdditionalConfiguration() {
     title = event.title
+  }
+}
+
+// MARK: - CheckInButtonDelegate
+extension EventDetailViewController: CheckInButtonDelegate {
+  func buttonClicked(_ sender: CheckInButton) {
+    let customAlert = CheckInAlertViewController()
+    customAlert.providesPresentationContextTransitionStyle = true
+    customAlert.definesPresentationContext = true
+    customAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+    customAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+    customAlert.delegate = self
+    present(customAlert, animated: true, completion: nil)
+  }
+}
+
+// MARK: - CheckInAlertViewDelegate Extension
+extension EventDetailViewController: CheckInAlertViewDelegate {
+  func cancelButtonClicked(_ sender: CheckInAlertViewController) {
+
+  }
+
+  func confirmButtonClicked(_ sender: CheckInAlertViewController, with name: String, andEmail email: String) {
+
   }
 }
