@@ -70,7 +70,7 @@ extension EventsViewController: ViewCodable {
 extension EventsViewController: UITableViewDelegate {
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return view.bounds.size.height * 0.1
+    return view.bounds.size.height * 0.15
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -94,11 +94,17 @@ extension EventsViewController: UITableViewDataSource {
 
     let event = viewModel.events[indexPath.row]
     cell.eventTitle.text = event.title
+    cell.eventImage.state = .fetching
 
     DispatchQueue.global().async { [weak self] in
-      self?.viewModel.getEventImage(event: event, { image in
+      self?.viewModel.getEventImage(event: event, success: { image in
         DispatchQueue.main.async { [weak cell] in
+          cell?.eventImage.state = .fetched(success: true)
           cell?.eventImage.image = image
+        }
+      }, failure: { networkError in
+        DispatchQueue.main.async { [weak cell] in
+          cell?.eventImage.state = .fetched(success: false)
         }
       })
     }

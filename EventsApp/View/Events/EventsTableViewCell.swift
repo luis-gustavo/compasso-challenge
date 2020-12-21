@@ -12,8 +12,10 @@ final class EventsTableViewCell: UITableViewCell {
 
   // MARK: - Properties
   static let identifier = "EventsTableViewCell"
-  let eventImage = UIImageView(frame: .zero)
+  let eventImage = EventImage(frame: .zero)
   let eventTitle = UILabel(frame: .zero)
+  fileprivate let padding = CGFloat(20)
+  
 
   // MARK: - Inits
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -37,18 +39,21 @@ extension EventsTableViewCell: ViewCodable {
 
   func setupConstraints() {
     eventImage.snp.makeConstraints { make in
-      make.left.top.bottom.equalToSuperview()
+      make.left.equalToSuperview().offset(padding)
+      make.top.equalToSuperview().offset(padding/2)
+      make.bottom.equalToSuperview().inset(padding/2)
       make.width.equalToSuperview().multipliedBy(0.2)
     }
 
     eventTitle.snp.makeConstraints{ make in
       make.centerY.equalTo(eventImage)
-      make.left.equalTo(eventImage.snp.right).offset(15)
-      make.right.equalToSuperview().inset(15)
+      make.left.equalTo(eventImage.snp.right).offset(padding)
+      make.right.equalToSuperview().inset(padding)
     }
   }
 
   func setupAdditionalConfiguration() {
     eventTitle.numberOfLines = 5
+    eventImage.state = .idle
   }
 }

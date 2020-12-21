@@ -37,7 +37,9 @@ final class EventsViewModel {
     }.store(in: &cancellables)
   }
 
-  func getEventImage(event: Event, _ completion: @escaping (UIImage) -> Void) {
+  func getEventImage(event: Event,
+                     success: @escaping (UIImage) -> Void,
+                     failure: @escaping (NetworkError) -> Void) {
     guard let url = URL(string: event.image) else {
       debugPrint("URL must exist from image path")
       return
@@ -47,13 +49,14 @@ final class EventsViewModel {
       .getEventImage(url: url).sink { completion in
         switch completion {
         case let .failure(networkError):
-          print(networkError)
+          failure(networkError)
+          debugPrint(networkError)
         case .finished:
           debugPrint("Finished")
           break
         }
       } receiveValue: { image in
-        completion(image)
+        success(image)
       }.store(in: &cancellables)
   }
 }

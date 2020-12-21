@@ -71,12 +71,19 @@ extension EventDetailViewController {
   }
 
   fileprivate func setupEventImage() {
+    screen.eventImage.state = .fetching
     DispatchQueue.global().async { [weak self] in
       guard let self = self else { return }
-      self.eventsViewModel.getEventImage(event: self.event) { [weak self] (image) in
-        guard let self = self else { return }
-        DispatchQueue.main.async {
+      self.eventsViewModel.getEventImage(event: self.event) { image in
+        DispatchQueue.main.async { [weak self] in
+          guard let self = self else { return }
+          self.screen.eventImage.state = .fetched(success: true)
           self.screen.eventImage.image = image
+        }
+      } failure: { networkError in
+        DispatchQueue.main.async { [weak self] in
+          guard let self = self else { return }
+          self.screen.eventImage.state = .fetched(success: false)
         }
       }
     }
@@ -119,7 +126,7 @@ extension EventDetailViewController: CheckInAlertViewDelegate {
 // MARK: - CheckInViewModelDelegate Extension
 extension EventDetailViewController: CheckInViewModelDelegate {
   func confirmButtonStateChanged(_ enable: Bool) {
-//    checkInAlert.screen.confirmButton.isUserInteractionEnabled = enable
+
   }
 
   func nameStateChanged(_ isValid: Bool) {

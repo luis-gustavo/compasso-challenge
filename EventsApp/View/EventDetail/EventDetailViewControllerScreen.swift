@@ -10,7 +10,7 @@ import UIKit
 final class EventDetailViewControllerScreen: UIView {
 
   // MARK: - Properties
-  let eventImage = UIImageView(frame: .zero)
+  let eventImage = EventImage(frame: .zero)
   let eventDescription = UILabel(frame: .zero)
   let checkinButton = CheckInButton(frame: .zero)
 
@@ -59,5 +59,6 @@ extension EventDetailViewControllerScreen: ViewCodable {
   func setupAdditionalConfiguration() {
     checkinButton.setTitle("Check In", for: .normal)
     eventDescription.numberOfLines = 10
+    eventImage.state = .idle
   }
 }
