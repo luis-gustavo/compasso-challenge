@@ -10,19 +10,12 @@ import UIKit
 final class EventDetailViewController: UIViewController {
 
   // MARK: - Properties
-  lazy var screen = EventDetailViewControllerScreen(frame: view.bounds)
+
   let event: Event
   let eventsViewModel = EventsViewModel()
+  lazy var screen = EventDetailViewControllerScreen(frame: view.bounds)
   lazy var checkInViewModel = CheckInViewModel(eventId: event.id)
-  var checkInAlert: CheckInAlertViewController {
-    let alert = CheckInAlertViewController()
-    alert.providesPresentationContextTransitionStyle = true
-    alert.definesPresentationContext = true
-    alert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-    alert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-    alert.delegate = self
-    return alert
-  }
+  weak var coordinator: MainCoordinator?
 
   // MARK: - Inits
   init(event: Event) {
@@ -47,12 +40,21 @@ final class EventDetailViewController: UIViewController {
     setupView()
   }
 
+  // MARK: - Deinit
+  deinit {
+    screen.checkinButton.removeTarget(self, action: nil, for: .touchUpInside)
+  }
+
   // MARK: - Methods
   func setup() {
     setupEventDescription()
     setupEventImage()
-    setupCheckInButtonDelegate()
     setupViewCheckInViewModelDelegate()
+    setupCheckInButtonTarget()
+  }
+
+  @objc func checkInButtonTapped() {
+    coordinator?.presentCheckInAlert(eventDetailViewController: self)
   }
 }
 
@@ -62,8 +64,8 @@ extension EventDetailViewController {
     screen.eventDescription.text = event.description
   }
 
-  fileprivate func setupCheckInButtonDelegate() {
-    screen.checkinButton.delegate = self
+  fileprivate func setupCheckInButtonTarget() {
+    screen.checkinButton.addTarget(self, action: #selector(checkInButtonTapped), for: .touchUpInside)
   }
 
   fileprivate func setupViewCheckInViewModelDelegate() {
@@ -101,13 +103,6 @@ extension EventDetailViewController: ViewCodable {
   }
 }
 
-// MARK: - CheckInButtonDelegate
-extension EventDetailViewController: CheckInButtonDelegate {
-  func buttonClicked(_ sender: CheckInButton) {
-    present(checkInAlert, animated: true, completion: nil)
-  }
-}
-
 // MARK: - CheckInAlertViewDelegate Extension
 extension EventDetailViewController: CheckInAlertViewDelegate {
   func textFieldEditingChanged(name: UITextField, email: UITextField) {
@@ -115,7 +110,7 @@ extension EventDetailViewController: CheckInAlertViewDelegate {
   }
 
   func cancelButtonClicked(_ sender: CheckInAlertViewController) {
-    dismiss(animated: true, completion: nil)
+    coordinator?.dismissAlerts()
   }
 
   func confirmButtonClicked(_ sender: CheckInAlertViewController) {

@@ -12,7 +12,7 @@ final class EventDetailViewControllerScreen: UIView {
   // MARK: - Properties
   let eventImage = EventImage(frame: .zero)
   let eventDescription = UILabel(frame: .zero)
-  let checkinButton = CheckInButton(frame: .zero)
+  let checkinButton = UIButton(type: .system)
 
   // MARK: - Inits
   override init(frame: CGRect) {
@@ -58,6 +58,7 @@ extension EventDetailViewControllerScreen: ViewCodable {
 
   func setupAdditionalConfiguration() {
     checkinButton.setTitle("Check In", for: .normal)
+    checkinButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
     eventDescription.numberOfLines = 10
     eventImage.state = .idle
   }

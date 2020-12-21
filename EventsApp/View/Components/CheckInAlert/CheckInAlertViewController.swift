@@ -17,6 +17,7 @@ final class CheckInAlertViewController: UIViewController {
 
   // MARK: - Properties
   lazy var screen = CheckInAlertViewControllerScreen(frame: .zero)
+  let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
   var delegate: CheckInAlertViewDelegate?
 
   // MARK: - Inits
@@ -65,7 +66,6 @@ extension CheckInAlertViewController {
     screen.confirmButton.addTarget(self, action: #selector(confirmButtonClicked), for: .touchUpInside)
     screen.nameTextField.addTarget(self, action: #selector(nameEditingChanged), for: .editingChanged)
     screen.emailTextField.addTarget(self, action: #selector(emailEditingChanged), for: .editingChanged)
-    hideKeyboardWhenTappedAround()
   }
 
   fileprivate func removeTargets() {
@@ -85,6 +85,7 @@ extension CheckInAlertViewController {
 extension CheckInAlertViewController: ViewCodable {
   func buildViewHierarchy() {
     view.addSubview(screen)
+    view.addSubview(blurEffectView)
   }
 
   func setupConstraints() {
@@ -94,9 +95,15 @@ extension CheckInAlertViewController: ViewCodable {
       make.centerX.equalToSuperview()
       make.centerY.equalToSuperview()
     }
+
+    blurEffectView.snp.makeConstraints { make in
+      make.top.bottom.right.left.equalToSuperview()
+    }
   }
 
-  func setupAdditionalConfiguration() { }
+  func setupAdditionalConfiguration() {
+    view.bringSubviewToFront(screen)
+  }
 }
 
 // MARK: - UITextFieldDelegate Extension
