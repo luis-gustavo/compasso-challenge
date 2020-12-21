@@ -37,6 +37,7 @@ final class CheckInAlertViewController: UIViewController {
     addTargets()
     setupTextFieldDelegates()
     setupViewModelDelegate()
+    hideKeyboardWhenTappedAround()
   }
 
   @objc private func cancelButtonClicked() {
@@ -50,6 +51,15 @@ final class CheckInAlertViewController: UIViewController {
   @objc func textFieldEditingChanged() {
     viewModel.validateForm(name: screen.nameTextField.text ?? "", email: screen.emailTextField.text ?? "")
   }
+
+  @objc func keyboardWillShow() {
+    view.frame.origin.y = -150
+  }
+
+  @objc func keyboardWillHide() {
+    view.frame.origin.y = 0
+  }
+
 }
 
 // MARK: - Setup Methods Extension
@@ -59,6 +69,8 @@ extension CheckInAlertViewController {
     screen.confirmButton.addTarget(self, action: #selector(confirmButtonClicked), for: .touchUpInside)
     screen.nameTextField.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged)
     screen.emailTextField.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
   }
 
   fileprivate func removeTargets() {
@@ -66,6 +78,8 @@ extension CheckInAlertViewController {
     screen.confirmButton.removeTarget(screen.confirmButton, action: nil, for: .touchUpInside)
     screen.nameTextField.removeTarget(self, action: nil, for: .editingChanged)
     screen.emailTextField.removeTarget(self, action: nil, for: .editingChanged)
+    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
   }
 
   fileprivate func setupTextFieldDelegates() {
