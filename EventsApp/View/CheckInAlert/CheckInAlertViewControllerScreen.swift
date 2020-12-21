@@ -102,5 +102,7 @@ extension CheckInAlertViewControllerScreen: ViewCodable {
     confirmButton.setTitle("Confirm", for: .normal)
     confirmButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
     confirmButton.isEnabled = false
+
+    backgroundColor = .white
   }
 }

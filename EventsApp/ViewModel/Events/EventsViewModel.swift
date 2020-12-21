@@ -13,7 +13,7 @@ final class EventsViewModel {
   // MARK: - Properties
   var events = [Event]() {
     didSet {
-      delegate?.eventsViewModeldidUpdateEvents()
+      delegate?.eventsViewModeldidUpdateEvents(events)
     }
   }
   var delegate: EventsViewModelDelegate?

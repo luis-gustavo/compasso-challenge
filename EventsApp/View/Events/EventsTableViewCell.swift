@@ -54,6 +54,8 @@ extension EventsTableViewCell: ViewCodable {
 
   func setupAdditionalConfiguration() {
     eventTitle.numberOfLines = 5
+    eventTitle.textColor = Colors.customYellow
     eventImage.state = .idle
+    backgroundColor = Colors.customDarkBlue
   }
 }

@@ -60,13 +60,13 @@ extension EventsViewController: ViewCodable {
   func setupConstraints() { }
 
   func setupAdditionalConfiguration() {
-    navigationController?.navigationBar.prefersLargeTitles = true
     title = "Events"
+    navigationController?.navigationBar.barTintColor = Colors.customYellow
+    navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Colors.customDarkBlue]
   }
 }
 
 // MARK: - TableView Extensions
-
 extension EventsViewController: UITableViewDelegate {
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -115,8 +115,11 @@ extension EventsViewController: UITableViewDataSource {
 
 // MARK: - ViewModel Extension
 extension EventsViewController: EventsViewModelDelegate {
-  func eventsViewModeldidUpdateEvents() {
-    #warning("Trocar o reload data por begin e end update")
-    self.screen.tableView.reloadData()
+  func eventsViewModeldidUpdateEvents(_ events: [Event]) {
+    screen.tableView.beginUpdates()
+    for row in 0..<events.count {
+      screen.tableView.insertRows(at: [IndexPath(row: row, section: 0)], with: .fade)
+    }
+    screen.tableView.endUpdates()
   }
 }

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol EventsViewModelDelegate {
-  func eventsViewModeldidUpdateEvents()
+  func eventsViewModeldidUpdateEvents(_ events: [Event])
 }

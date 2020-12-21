@@ -14,11 +14,23 @@ struct CheckInNetworking {
   static func makeCheckIn(_ checkIn: CheckIn) -> AnyPublisher<HTTPStatusCode, NetworkError> {
     return Future<NetworkResponse<HTTPStatusCode>, NetworkError> { promise in
       AF.request(Api.checkinUrl, method: .post, parameters: checkIn, encoder: Alamofire.JSONParameterEncoder.default).responseData { response  in
+
         guard let statusCode = response.response?.status else {
           promise(.failure(.withoutResponse))
           return
         }
-        promise(.success(.nonEmpty(statusCode, statusCode)))
+
+        if let error = response.error {
+          promise(.failure(.unknown(error)))
+          return
+        }
+
+        if (statusCode.rawValue >= 200 && statusCode.rawValue <= 299) {
+          promise(.success(.nonEmpty(statusCode, statusCode)))
+        } else {
+          promise(.failure(.emptyResponse))
+        }
+
       }
     }
     .tryMap({ networkResponse -> HTTPStatusCode in

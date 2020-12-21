@@ -45,6 +45,8 @@ final class CheckInAlertViewController: UIViewController {
   }
 
   @objc private func confirmButtonClicked() {
+    print(#function)
+    screen.isUserInteractionEnabled = false
     viewModel.makeCheckIn()
   }
 
@@ -103,8 +105,7 @@ extension CheckInAlertViewController: ViewCodable {
     screen.snp.makeConstraints { make in
       make.height.equalToSuperview().multipliedBy(0.5)
       make.width.equalToSuperview().multipliedBy(0.8)
-      make.centerX.equalToSuperview()
-      make.centerY.equalToSuperview()
+      make.center.equalToSuperview()
     }
 
     blurEffectView.snp.makeConstraints { make in
@@ -131,6 +132,10 @@ extension CheckInAlertViewController: UITextFieldDelegate {
 
 // MARK: - CheckInViewModelDelegate Extension
 extension CheckInAlertViewController: CheckInViewModelDelegate {
+  func didMakeCheckIn(code: HTTPStatusCode?, networkError: NetworkError?) {
+    coordinator?.presentCheckInResult(code: code, networkError: networkError)
+  }
+
   func confirmButtonStateChanged(_ enable: Bool) {
     screen.confirmButton.isEnabled = enable
   }

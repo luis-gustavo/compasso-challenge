@@ -9,4 +9,5 @@ import Foundation
 
 protocol CheckInViewModelDelegate {
   func confirmButtonStateChanged(_ enable: Bool)
+  func didMakeCheckIn(code: HTTPStatusCode?, networkError: NetworkError?)
 }

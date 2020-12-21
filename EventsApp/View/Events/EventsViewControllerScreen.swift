@@ -39,5 +39,6 @@ extension EventsViewControllerScreen: ViewCodable {
 
   func setupAdditionalConfiguration() {
     tableView.separatorStyle = .none
+    backgroundColor = .white
   }
 }

@@ -39,6 +39,9 @@
 		6ECBCFAD258FEDE0003B4FE2 /* CheckInNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECBCFAC258FEDE0003B4FE2 /* CheckInNetworking.swift */; };
 		6EEEF1E02590CD9D008DCF37 /* EventImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEEF1DF2590CD9D008DCF37 /* EventImage.swift */; };
 		6EEEF1F22590ECA2008DCF37 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEEF1F12590ECA2008DCF37 /* UIViewController+Extensions.swift */; };
+		6EEEF1FB2590F75D008DCF37 /* CheckInResultAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEEF1FA2590F75D008DCF37 /* CheckInResultAlertViewController.swift */; };
+		6EEEF2032590F771008DCF37 /* CheckInResultAlertViewControllerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEEF2022590F771008DCF37 /* CheckInResultAlertViewControllerScreen.swift */; };
+		6EEEF20925910535008DCF37 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEEF20825910535008DCF37 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +97,9 @@
 		6ECBCFAC258FEDE0003B4FE2 /* CheckInNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInNetworking.swift; sourceTree = "<group>"; };
 		6EEEF1DF2590CD9D008DCF37 /* EventImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventImage.swift; sourceTree = "<group>"; };
 		6EEEF1F12590ECA2008DCF37 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		6EEEF1FA2590F75D008DCF37 /* CheckInResultAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInResultAlertViewController.swift; sourceTree = "<group>"; };
+		6EEEF2022590F771008DCF37 /* CheckInResultAlertViewControllerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInResultAlertViewControllerScreen.swift; sourceTree = "<group>"; };
+		6EEEF20825910535008DCF37 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +153,7 @@
 		6EB52E7E258D3E4B0059C1AB /* EventsApp */ = {
 			isa = PBXGroup;
 			children = (
+				6EEEF20725910523008DCF37 /* Color */,
 				6EEEF1F02590EC91008DCF37 /* Extensions */,
 				6EB52F21258D4DB70059C1AB /* Model */,
 				6EB52F0E258D49560059C1AB /* Coordinator */,
@@ -213,6 +220,7 @@
 		6EB52F02258D48990059C1AB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6EEEF1F92590F727008DCF37 /* ResultAlert */,
 				6ECBCF86258FC067003B4FE2 /* CheckInAlert */,
 				6ECBCF75258FB3A7003B4FE2 /* Components */,
 				6ECBCF63258F7D17003B4FE2 /* EventDetail */,
@@ -307,6 +315,23 @@
 				6EEEF1F12590ECA2008DCF37 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6EEEF1F92590F727008DCF37 /* ResultAlert */ = {
+			isa = PBXGroup;
+			children = (
+				6EEEF1FA2590F75D008DCF37 /* CheckInResultAlertViewController.swift */,
+				6EEEF2022590F771008DCF37 /* CheckInResultAlertViewControllerScreen.swift */,
+			);
+			path = ResultAlert;
+			sourceTree = "<group>";
+		};
+		6EEEF20725910523008DCF37 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				6EEEF20825910535008DCF37 /* Colors.swift */,
+			);
+			path = Color;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -455,6 +480,7 @@
 				6EB52ED2258D42220059C1AB /* NetworkError.swift in Sources */,
 				6ECBCF95258FC9DA003B4FE2 /* CheckInViewModel.swift in Sources */,
 				6ECBCF77258FB3B8003B4FE2 /* CheckInAlertViewController.swift in Sources */,
+				6EEEF2032590F771008DCF37 /* CheckInResultAlertViewControllerScreen.swift in Sources */,
 				6ECBCF9A258FCA0C003B4FE2 /* CheckIn.swift in Sources */,
 				6EB52EDD258D42DA0059C1AB /* EventNetworking.swift in Sources */,
 				6EB52E80258D3E4B0059C1AB /* AppDelegate.swift in Sources */,
@@ -464,6 +490,8 @@
 				6EEEF1E02590CD9D008DCF37 /* EventImage.swift in Sources */,
 				6EB52EFB258D48710059C1AB /* Coordinatable.swift in Sources */,
 				6EB52EBE258D3F630059C1AB /* Event.swift in Sources */,
+				6EEEF20925910535008DCF37 /* Colors.swift in Sources */,
+				6EEEF1FB2590F75D008DCF37 /* CheckInResultAlertViewController.swift in Sources */,
 				6ECBCF88258FC078003B4FE2 /* CheckInAlertViewControllerScreen.swift in Sources */,
 				6EB52EC3258D40CD0059C1AB /* Api.swift in Sources */,
 				6EB52F10258D49620059C1AB /* MainCoordinator.swift in Sources */,

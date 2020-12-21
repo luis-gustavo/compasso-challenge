@@ -13,6 +13,7 @@ final class CheckInViewModel {
   // MARK: - Properties
   var delegate: CheckInViewModelDelegate?
   let eventId: String
+  weak var coordinator: MainCoordinator?
   fileprivate var name = ""
   fileprivate var email = ""
   fileprivate var cancellabe = Set<AnyCancellable>()
@@ -41,15 +42,14 @@ final class CheckInViewModel {
         switch completion {
         case let .failure(networkError):
           print(networkError)
+          self.delegate?.didMakeCheckIn(code: nil, networkError: networkError)
         case .finished:
           debugPrint("Finished")
           break
         }
       } receiveValue: { httpStatusCode in
-        switch httpStatusCode.rawValue {
-        case 200...299: debugPrint("success")
-        default: debugPrint("error")
-        }
+        print(httpStatusCode.rawValue)
+        self.delegate?.didMakeCheckIn(code: httpStatusCode, networkError: nil)
       }.store(in: &cancellabe)
   }
 

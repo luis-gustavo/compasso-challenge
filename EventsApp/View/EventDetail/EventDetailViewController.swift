@@ -14,6 +14,12 @@ final class EventDetailViewController: UIViewController {
   let event: Event
   let eventsViewModel = EventsViewModel()
   lazy var screen = EventDetailViewControllerScreen(frame: view.bounds)
+  var shareImage: UIImage {
+    guard let shareImage = UIImage(named: "share") else {
+      preconditionFailure("Share image must exist")
+    }
+    return shareImage
+  }
   
   weak var coordinator: MainCoordinator?
 
@@ -38,6 +44,7 @@ final class EventDetailViewController: UIViewController {
     super.loadView()
     view = screen
     setupView()
+    setupShareButton()
   }
 
   // MARK: - Deinit
@@ -55,6 +62,10 @@ final class EventDetailViewController: UIViewController {
   @objc func checkInButtonTapped() {
     coordinator?.presentCheckInAlert(eventId: event.id)
   }
+
+  @objc func didTapShareButton() {
+    coordinator?.presentActivityViewController(event: event)
+  }
 }
 
 // MARK: - Setup methods Extension
@@ -65,6 +76,10 @@ extension EventDetailViewController {
 
   fileprivate func setupCheckInButtonTarget() {
     screen.checkinButton.addTarget(self, action: #selector(checkInButtonTapped), for: .touchUpInside)
+  }
+
+  fileprivate func setupShareButton() {
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image: shareImage, style: .done, target: self, action: #selector(didTapShareButton))
   }
 
   fileprivate func setupEventImage() {

@@ -38,7 +38,24 @@ final class MainCoordinator: Coordinatable {
     navigationController.present(alert, animated: true, completion: nil)
   }
 
+  func presentCheckInResult(code: HTTPStatusCode?, networkError: NetworkError?) {
+    let alert = CheckInResultAlertViewController(code: code, networkError: networkError)
+    alert.definesPresentationContext = true
+    alert.coordinator = self
+    alert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+    alert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+    navigationController.dismiss(animated: false) {
+      self.navigationController.present(alert, animated: true)
+    }
+  }
+
   func dismissAlerts() {
     navigationController.dismiss(animated: true, completion: nil)
+  }
+
+  func presentActivityViewController(event: Event) {
+    let activityViewController = UIActivityViewController(activityItems: [event.title, event.description], applicationActivities: nil)
+    activityViewController.popoverPresentationController?.sourceView = navigationController.visibleViewController?.view
+    navigationController.present(activityViewController, animated: true, completion: nil)
   }
 }
