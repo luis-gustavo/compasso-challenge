@@ -210,6 +210,7 @@
 		6EB52F02258D48990059C1AB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6ECBCF86258FC067003B4FE2 /* CheckInAlert */,
 				6ECBCF75258FB3A7003B4FE2 /* Components */,
 				6ECBCF63258F7D17003B4FE2 /* EventDetail */,
 				6EB52F14258D49E10059C1AB /* Events */,
@@ -265,7 +266,6 @@
 		6ECBCF75258FB3A7003B4FE2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				6ECBCF86258FC067003B4FE2 /* CheckInAlert */,
 				6EEEF1DF2590CD9D008DCF37 /* EventImage.swift */,
 			);
 			path = Components;

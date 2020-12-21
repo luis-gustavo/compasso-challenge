@@ -14,7 +14,7 @@ final class EventDetailViewController: UIViewController {
   let event: Event
   let eventsViewModel = EventsViewModel()
   lazy var screen = EventDetailViewControllerScreen(frame: view.bounds)
-  lazy var checkInViewModel = CheckInViewModel(eventId: event.id)
+  
   weak var coordinator: MainCoordinator?
 
   // MARK: - Inits
@@ -49,12 +49,11 @@ final class EventDetailViewController: UIViewController {
   func setup() {
     setupEventDescription()
     setupEventImage()
-    setupViewCheckInViewModelDelegate()
     setupCheckInButtonTarget()
   }
 
   @objc func checkInButtonTapped() {
-    coordinator?.presentCheckInAlert(eventDetailViewController: self)
+    coordinator?.presentCheckInAlert(eventId: event.id)
   }
 }
 
@@ -66,10 +65,6 @@ extension EventDetailViewController {
 
   fileprivate func setupCheckInButtonTarget() {
     screen.checkinButton.addTarget(self, action: #selector(checkInButtonTapped), for: .touchUpInside)
-  }
-
-  fileprivate func setupViewCheckInViewModelDelegate() {
-    checkInViewModel.delegate = self
   }
 
   fileprivate func setupEventImage() {
@@ -100,43 +95,5 @@ extension EventDetailViewController: ViewCodable {
 
   func setupAdditionalConfiguration() {
     title = event.title
-  }
-}
-
-// MARK: - CheckInAlertViewDelegate Extension
-extension EventDetailViewController: CheckInAlertViewDelegate {
-  func textFieldEditingChanged(name: UITextField, email: UITextField) {
-    checkInViewModel.validateForm(name: name.text ?? "", email: email.text ?? "")
-  }
-
-  func cancelButtonClicked(_ sender: CheckInAlertViewController) {
-    coordinator?.dismissAlerts()
-  }
-
-  func confirmButtonClicked(_ sender: CheckInAlertViewController) {
-    checkInViewModel.makeCheckIn()
-  }
-}
-
-// MARK: - CheckInViewModelDelegate Extension
-extension EventDetailViewController: CheckInViewModelDelegate {
-  func confirmButtonStateChanged(_ enable: Bool) {
-
-  }
-
-  func nameStateChanged(_ isValid: Bool) {
-    if (isValid) {
-
-    } else {
-
-    }
-  }
-
-  func emailStateChanged(_ isValid: Bool) {
-    if (isValid) {
-
-    } else {
-
-    }
   }
 }

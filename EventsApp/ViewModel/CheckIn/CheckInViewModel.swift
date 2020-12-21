@@ -24,27 +24,10 @@ final class CheckInViewModel {
 
   // MARK: - Methods
   func validateForm(name: String, email: String) {
-    if (isNameValid(name)) {
-      delegate?.nameStateChanged(true)
-      if (isEmailValid(email)) {
-        // Both Valid
-        delegate?.emailStateChanged(true)
-        delegate?.confirmButtonStateChanged(true)
-      } else {
-        // Just name is valid
-        delegate?.emailStateChanged(false)
-        delegate?.confirmButtonStateChanged(false)
-      }
+    if (isNameValid(name) && isEmailValid(email)) {
+      delegate?.confirmButtonStateChanged(true)
     } else {
-      delegate?.nameStateChanged(false)
       delegate?.confirmButtonStateChanged(false)
-      if (isEmailValid(email)) {
-        // Just email is valid
-        delegate?.emailStateChanged(true)
-      } else {
-        // Neither are valid
-        delegate?.emailStateChanged(false)
-      }
     }
   }
 

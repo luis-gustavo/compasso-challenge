@@ -9,6 +9,4 @@ import Foundation
 
 protocol CheckInViewModelDelegate {
   func confirmButtonStateChanged(_ enable: Bool)
-  func nameStateChanged(_ isValid: Bool)
-  func emailStateChanged(_ isValid: Bool)
 }

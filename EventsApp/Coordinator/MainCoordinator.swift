@@ -28,13 +28,13 @@ final class MainCoordinator: Coordinatable {
     navigationController.pushViewController(eventDetailViewController, animated: true)
   }
 
-  func presentCheckInAlert(eventDetailViewController: EventDetailViewController) {
-    let alert = CheckInAlertViewController()
+  func presentCheckInAlert(eventId: String) {
+    let alert = CheckInAlertViewController(eventId: eventId)
     alert.providesPresentationContextTransitionStyle = true
     alert.definesPresentationContext = true
+    alert.coordinator = self
     alert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
     alert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-    alert.delegate = eventDetailViewController
     navigationController.present(alert, animated: true, completion: nil)
   }
 

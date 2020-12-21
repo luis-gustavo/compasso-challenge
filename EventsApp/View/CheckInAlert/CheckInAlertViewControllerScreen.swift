@@ -14,9 +14,9 @@ final class CheckInAlertViewControllerScreen: UIView {
   let descriptionLabel = UILabel(frame: .zero)
   let nameTextField = UITextField(frame: .zero)
   let emailTextField = UITextField(frame: .zero)
-  let cancelButton = UIButton(type: .close)
+  let cancelButton = UIButton(type: .system)
   let confirmButton = UIButton(type: .system)
-  var delegate: CheckInAlertViewDelegate?
+  fileprivate let padding = CGFloat(20)
 
   // MARK: - Inits
   override init(frame: CGRect) {
@@ -42,41 +42,41 @@ extension CheckInAlertViewControllerScreen: ViewCodable {
 
   func setupConstraints() {
     titleLabel.snp.makeConstraints { make in
-      make.left.top.equalToSuperview().offset(10)
-      make.right.top.equalToSuperview().inset(10)
+      make.left.top.equalToSuperview().offset(padding)
+      make.right.top.equalToSuperview().inset(padding)
       make.height.equalToSuperview().multipliedBy(0.1)
     }
 
     descriptionLabel.snp.makeConstraints { make in
-      make.left.equalToSuperview().offset(10)
-      make.right.equalToSuperview().inset(10)
-      make.top.equalTo(titleLabel.snp.bottom).offset(10)
+      make.left.equalToSuperview().offset(padding)
+      make.right.equalToSuperview().inset(padding)
+      make.top.equalTo(titleLabel.snp.bottom).offset(padding)
       make.height.equalToSuperview().multipliedBy(0.2)
     }
 
     nameTextField.snp.makeConstraints { make in
-      make.left.equalToSuperview().offset(10)
-      make.right.equalToSuperview().inset(10)
-      make.top.equalTo(descriptionLabel.snp.bottom).offset(20)
+      make.left.equalToSuperview().offset(padding)
+      make.right.equalToSuperview().inset(padding)
+      make.top.equalTo(descriptionLabel.snp.bottom).offset(padding)
       make.height.equalToSuperview().multipliedBy(0.1)
     }
 
     emailTextField.snp.makeConstraints { make in
-      make.left.equalToSuperview().offset(10)
-      make.right.equalToSuperview().inset(10)
-      make.top.equalTo(nameTextField.snp.bottom).offset(10)
+      make.left.equalToSuperview().offset(padding)
+      make.right.equalToSuperview().inset(padding)
+      make.top.equalTo(nameTextField.snp.bottom).offset(padding)
       make.height.equalToSuperview().multipliedBy(0.1)
     }
 
     cancelButton.snp.makeConstraints { make in
-      make.bottom.equalToSuperview().inset(10)
-      make.left.equalToSuperview().offset(10)
+      make.bottom.equalToSuperview().inset(padding)
+      make.left.equalToSuperview().offset(padding)
       make.height.equalToSuperview().multipliedBy(0.1)
     }
 
     confirmButton.snp.makeConstraints { make in
-      make.bottom.equalToSuperview().inset(10)
-      make.right.equalToSuperview().inset(10)
+      make.bottom.equalToSuperview().inset(padding)
+      make.right.equalToSuperview().inset(padding)
       make.height.equalToSuperview().multipliedBy(0.1)
     }
   }
@@ -96,9 +96,11 @@ extension CheckInAlertViewControllerScreen: ViewCodable {
     emailTextField.keyboardType = .emailAddress
 
     cancelButton.setTitle("Cancel", for: .normal)
+    cancelButton.setTitleColor(.red, for: .normal)
+    cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
 
     confirmButton.setTitle("Confirm", for: .normal)
-
-    backgroundColor = UIColor.systemGray
+    confirmButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+    confirmButton.isEnabled = false
   }
 }
