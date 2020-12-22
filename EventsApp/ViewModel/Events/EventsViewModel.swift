@@ -11,6 +11,8 @@ import Combine
 final class EventsViewModel {
 
   // MARK: - Properties
+  let eventsNetworking: EventsNetworking
+  let eventImageNetworking: EventImageNetworking
   var events = [Event]() {
     didSet {
       delegate?.eventsViewModeldidUpdateEvents(events)
@@ -19,9 +21,16 @@ final class EventsViewModel {
   var delegate: EventsViewModelDelegate?
   fileprivate var cancellables = Set<AnyCancellable>()
 
+  // MARK: - Init
+  init(eventsNetworking: EventsNetworking = EventsNetworking(),
+       eventImageNetworking: EventImageNetworking = EventImageNetworking()) {
+    self.eventsNetworking = eventsNetworking
+    self.eventImageNetworking = eventImageNetworking
+  }
+
   // MARK: - Methods
   func getEvents() {
-    EventsNetworking()
+    eventsNetworking
       .requestEvents()
       .receive(on: RunLoop.main)
       .sink { completion in
@@ -45,7 +54,7 @@ final class EventsViewModel {
       return
     }
 
-    EventImageNetworking()
+    eventImageNetworking
       .requestEventImage(url: url)
       .sink { completion in
         switch completion {

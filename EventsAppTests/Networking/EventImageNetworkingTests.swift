@@ -24,7 +24,7 @@ class EventImageNetworkingTests: XCTestCase {
 
   // MARK: - Tests
   func testRequestEventsValidData() {
-    let responseExpection = expectation(description: "Wait for valid events response")
+    let responseExpection = expectation(description: "Wait for event image response")
 
     eventImageNetworking
       .requestEventImage(url: Api.eventsUrl)
@@ -41,17 +41,4 @@ class EventImageNetworkingTests: XCTestCase {
     super.tearDown()
   }
 
-}
-
-private final class MockImageNetworking: Networking {
-  var eventImage: UIImage {
-    guard let image = UIImage(named: "errorImage") else {
-      preconditionFailure("Image must exist")
-    }
-    return image
-  }
-
-  func request(url: URL, method: HTTPMethod, parameters: AnyEncodable?, encoder: ParameterEncoder?) -> AnyPublisher<NetworkResponse<UIImage>, NetworkError> {
-    return Result.Publisher(.success(.nonEmpty(eventImage, .ok))).eraseToAnyPublisher()
-  }
 }

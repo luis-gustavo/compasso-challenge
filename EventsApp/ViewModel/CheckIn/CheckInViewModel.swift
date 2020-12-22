@@ -11,15 +11,18 @@ import Combine
 final class CheckInViewModel {
 
   // MARK: - Properties
-  var delegate: CheckInViewModelDelegate?
+  let checkInNetworking: CheckInNetworking
   let eventId: String
+  var delegate: CheckInViewModelDelegate?
   weak var coordinator: MainCoordinator?
   fileprivate var name = ""
   fileprivate var email = ""
   fileprivate var cancellabe = Set<AnyCancellable>()
 
   // MARK: - Init
-  init(eventId: String) {
+  init(checkInNetworking: CheckInNetworking = CheckInNetworking(),
+       eventId: String) {
+    self.checkInNetworking = checkInNetworking
     self.eventId = eventId
   }
 
@@ -35,7 +38,7 @@ final class CheckInViewModel {
   func makeCheckIn() {
     let checkIn = CheckIn(eventId: eventId, name: name, email: email)
 
-    CheckInNetworking()
+    checkInNetworking
       .makeCheckIn(checkIn)
       .receive(on: RunLoop.main)
       .sink { completion in

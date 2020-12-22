@@ -23,7 +23,7 @@ class CheckInNetworkingTests: XCTestCase {
 
   // MARK: - Tests
   func testRequestEventsValidData() {
-    let responseExpection = expectation(description: "Wait for valid events response")
+    let responseExpection = expectation(description: "Wait for check in response")
 
     checkInNetworking
       .makeCheckIn(CheckIn(eventId: "", name: "", email: ""))
@@ -38,11 +38,5 @@ class CheckInNetworkingTests: XCTestCase {
   // MARK: - TeardDown
   override func tearDown() {
     super.tearDown()
-  }
-}
-
-private final class MockCheckInNetworking: Networking {
-  func request(url: URL, method: HTTPMethod, parameters: AnyEncodable?, encoder: ParameterEncoder?) -> AnyPublisher<NetworkResponse<Data>, NetworkError> {
-    return Result.Publisher(.success(.empty(.ok))).eraseToAnyPublisher()
   }
 }
