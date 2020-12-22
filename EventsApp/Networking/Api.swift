@@ -24,11 +24,6 @@ struct Api {
       .appendingPathComponent("events")
   }
 
-  static func eventBy(id: Int) -> URL {
-    return eventsUrl
-      .appendingPathComponent("\(id)")
-  }
-
   static var checkinUrl: URL {
     return hostUrl
       .appendingPathComponent("checkin")
