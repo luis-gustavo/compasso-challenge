@@ -1,14 +1,13 @@
 //
-//  EventsAppTests.swift
+//  ApiTests.swift
 //  EventsAppTests
 //
-//  Created by Luis Gustavo Avelino de Lima Jacinto on 18/12/20.
+//  Created by Luis Gustavo Avelino de Lima Jacinto on 22/12/20.
 //
 
 import XCTest
-@testable import EventsApp
 
-class EventsAppTests: XCTestCase {
+class ApiTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

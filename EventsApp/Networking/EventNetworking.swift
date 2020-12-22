@@ -12,17 +12,13 @@ import AlamofireImage
 
 struct EventNetworking {
 
-  static func getEvents() -> AnyPublisher<[Event], NetworkError> {
-
+  static fileprivate func request(from url: URL, method: HTTPMethod) -> AnyPublisher<NetworkResponse<Data>, NetworkError> {
     return Future<NetworkResponse<Data>, NetworkError> { promise in
-
-      AF.request(Api.eventsUrl).responseData { response in
-
+      AF.request(url, method: method).responseData { response in
         guard let statusCode = response.response?.status else {
           promise(.failure(.withoutResponse))
           return
         }
-
         if let data = response.data {
           promise(.success(.nonEmpty(data, statusCode)))
         } else {
@@ -30,7 +26,13 @@ struct EventNetworking {
         }
       }
     }
-    .tryMap { networkResponse -> [Event] in
+    .eraseToAnyPublisher()
+  }
+
+  static func getEvents() -> AnyPublisher<[Event], NetworkError> {
+
+    return request(from: Api.eventsUrl, method: .get)
+      .tryMap { networkResponse -> [Event] in
       switch networkResponse {
       case let .nonEmpty(data, _):
         do {
