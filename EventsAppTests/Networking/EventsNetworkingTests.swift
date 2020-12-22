@@ -45,7 +45,6 @@ class EventsNetworkingTests: XCTestCase {
 }
 
 private final class MockDataNetworking: Networking {
-
   var eventsData: Data {
     let events = [
       Event(people: [], date: Date(), description: "description", image: "image", longitude: 1, latitude: 1, price: 1, title: "title", id: "id"),
@@ -54,11 +53,11 @@ private final class MockDataNetworking: Networking {
     do {
       return try JSONEncoder().encode(events)
     } catch {
-      fatalError("Events must be encodable")
+      preconditionFailure("Events must be encodable")
     }
   }
 
-  func request(url: URL, httpMethod: HTTPMethod, parameters: AnyEncodable?, encoding: ParameterEncoder?) -> AnyPublisher<NetworkResponse<Data>, NetworkError> {
+  func request(url: URL, method: HTTPMethod, parameters: AnyEncodable?, encoder: ParameterEncoder?) -> AnyPublisher<NetworkResponse<Data>, NetworkError> {
     return Result.Publisher(.success(.nonEmpty(eventsData, .ok))).eraseToAnyPublisher()
   }
 }

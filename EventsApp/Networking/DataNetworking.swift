@@ -23,7 +23,6 @@ final class DataNetworking: Networking {
             return
           }
 
-
           if let error = response.error {
             promise(.failure(.unknown(error)))
             return
