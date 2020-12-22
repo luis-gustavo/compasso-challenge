@@ -45,7 +45,6 @@ final class CheckInAlertViewController: UIViewController {
   }
 
   @objc private func confirmButtonClicked() {
-    print(#function)
     screen.isUserInteractionEnabled = false
     viewModel.makeCheckIn()
   }

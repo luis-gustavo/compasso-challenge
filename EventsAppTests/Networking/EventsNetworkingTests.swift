@@ -7,12 +7,13 @@
 
 import XCTest
 import Combine
+import Alamofire
 @testable import EventsApp
 
 class EventsNetworkingTests: XCTestCase {
 
   // MARK: - Properties
-  let eventNetworking = EventNetworking(networking: AnyNetworking(network: MockDataNetworking()))
+  let eventNetworking = EventsNetworking(networking: AnyNetworking(network: MockDataNetworking()))
   var cancellable = Set<AnyCancellable>()
 
   // MARK: - Setup
@@ -57,7 +58,7 @@ private final class MockDataNetworking: Networking {
     }
   }
 
-  func request(url: URL) -> AnyPublisher<NetworkResponse<Data>, NetworkError> {
+  func request(url: URL, httpMethod: HTTPMethod, parameters: AnyEncodable?, encoding: ParameterEncoder?) -> AnyPublisher<NetworkResponse<Data>, NetworkError> {
     return Result.Publisher(.success(.nonEmpty(eventsData, .ok))).eraseToAnyPublisher()
   }
 }

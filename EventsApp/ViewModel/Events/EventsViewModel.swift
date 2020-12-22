@@ -21,7 +21,7 @@ final class EventsViewModel {
 
   // MARK: - Methods
   func getEvents() {
-    EventNetworking()
+    EventsNetworking()
       .requestEvents()
       .receive(on: RunLoop.main)
       .sink { completion in
@@ -45,8 +45,9 @@ final class EventsViewModel {
       return
     }
 
-    EventNetworking
-      .getEventImage(url: url).sink { completion in
+    EventImageNetworking()
+      .requestEventImage(url: url)
+      .sink { completion in
         switch completion {
         case let .failure(networkError):
           failure(networkError)

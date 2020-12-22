@@ -35,7 +35,7 @@ final class CheckInViewModel {
   func makeCheckIn() {
     let checkIn = CheckIn(eventId: eventId, name: name, email: email)
 
-    CheckInNetworking
+    CheckInNetworking()
       .makeCheckIn(checkIn)
       .receive(on: RunLoop.main)
       .sink { completion in

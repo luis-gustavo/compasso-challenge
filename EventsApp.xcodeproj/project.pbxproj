@@ -14,6 +14,13 @@
 		6E74DD4E2592630400DE59F8 /* CheckInViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E74DD4D2592630400DE59F8 /* CheckInViewModelTests.swift */; };
 		6E74DD5D25926B5D00DE59F8 /* ApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E74DD5C25926B5D00DE59F8 /* ApiTests.swift */; };
 		6E74DD6D25927AD800DE59F8 /* EventsNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E74DD6C25927AD800DE59F8 /* EventsNetworkingTests.swift */; };
+		6E74DD7225928BD300DE59F8 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E74DD7125928BD300DE59F8 /* Networking.swift */; };
+		6E74DD7725928BF300DE59F8 /* AnyNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E74DD7625928BF300DE59F8 /* AnyNetworking.swift */; };
+		6E74DD7E25928C4500DE59F8 /* EventsNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E74DD7D25928C4500DE59F8 /* EventsNetworking.swift */; };
+		6E74DD8625928C7200DE59F8 /* DataNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E74DD8525928C7200DE59F8 /* DataNetworking.swift */; };
+		6E74DD8B25928CAB00DE59F8 /* ImageNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E74DD8A25928CAB00DE59F8 /* ImageNetworking.swift */; };
+		6E74DD9025928CDB00DE59F8 /* EventImageNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E74DD8F25928CDB00DE59F8 /* EventImageNetworking.swift */; };
+		6E74DD9E25929F7C00DE59F8 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E74DD9D25929F7C00DE59F8 /* AnyEncodable.swift */; };
 		6EB52E80258D3E4B0059C1AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52E7F258D3E4B0059C1AB /* AppDelegate.swift */; };
 		6EB52E89258D3E4D0059C1AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EB52E88258D3E4D0059C1AB /* Assets.xcassets */; };
 		6EB52E8C258D3E4D0059C1AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EB52E8A258D3E4D0059C1AB /* LaunchScreen.storyboard */; };
@@ -24,7 +31,6 @@
 		6EB52ECD258D421A0059C1AB /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52ECC258D421A0059C1AB /* NetworkResponse.swift */; };
 		6EB52ED2258D42220059C1AB /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52ED1258D42220059C1AB /* NetworkError.swift */; };
 		6EB52ED8258D42B30059C1AB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6EB52ED7258D42B30059C1AB /* Alamofire */; };
-		6EB52EDD258D42DA0059C1AB /* EventNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52EDC258D42DA0059C1AB /* EventNetworking.swift */; };
 		6EB52EF6258D48600059C1AB /* ViewCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52EF5258D48600059C1AB /* ViewCodable.swift */; };
 		6EB52EFB258D48710059C1AB /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52EFA258D48710059C1AB /* Coordinatable.swift */; };
 		6EB52F05258D48C40059C1AB /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB52F04258D48C40059C1AB /* EventsViewController.swift */; };
@@ -71,6 +77,13 @@
 		6E74DD4D2592630400DE59F8 /* CheckInViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInViewModelTests.swift; sourceTree = "<group>"; };
 		6E74DD5C25926B5D00DE59F8 /* ApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiTests.swift; sourceTree = "<group>"; };
 		6E74DD6C25927AD800DE59F8 /* EventsNetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsNetworkingTests.swift; sourceTree = "<group>"; };
+		6E74DD7125928BD300DE59F8 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		6E74DD7625928BF300DE59F8 /* AnyNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyNetworking.swift; sourceTree = "<group>"; };
+		6E74DD7D25928C4500DE59F8 /* EventsNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsNetworking.swift; sourceTree = "<group>"; };
+		6E74DD8525928C7200DE59F8 /* DataNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataNetworking.swift; sourceTree = "<group>"; };
+		6E74DD8A25928CAB00DE59F8 /* ImageNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNetworking.swift; sourceTree = "<group>"; };
+		6E74DD8F25928CDB00DE59F8 /* EventImageNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventImageNetworking.swift; sourceTree = "<group>"; };
+		6E74DD9D25929F7C00DE59F8 /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
 		6EB52E7C258D3E4B0059C1AB /* EventsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EB52E7F258D3E4B0059C1AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6EB52E88258D3E4D0059C1AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,7 +99,6 @@
 		6EB52EC7258D41F90059C1AB /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		6EB52ECC258D421A0059C1AB /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		6EB52ED1258D42220059C1AB /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		6EB52EDC258D42DA0059C1AB /* EventNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNetworking.swift; sourceTree = "<group>"; };
 		6EB52EF5258D48600059C1AB /* ViewCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodable.swift; sourceTree = "<group>"; };
 		6EB52EFA258D48710059C1AB /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
 		6EB52F04258D48C40059C1AB /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +164,25 @@
 				6E74DD6C25927AD800DE59F8 /* EventsNetworkingTests.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		6E74DD7B25928C1E00DE59F8 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				6E74DD7D25928C4500DE59F8 /* EventsNetworking.swift */,
+				6E74DD8525928C7200DE59F8 /* DataNetworking.swift */,
+				6E74DD8A25928CAB00DE59F8 /* ImageNetworking.swift */,
+				6E74DD8F25928CDB00DE59F8 /* EventImageNetworking.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		6E74DD7C25928C2200DE59F8 /* CheckIn */ = {
+			isa = PBXGroup;
+			children = (
+				6ECBCFAC258FEDE0003B4FE2 /* CheckInNetworking.swift */,
+			);
+			path = CheckIn;
 			sourceTree = "<group>";
 		};
 		6EB52E73258D3E4B0059C1AB = {
@@ -223,12 +254,15 @@
 		6EB52EBC258D3F3A0059C1AB /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				6E74DD7C25928C2200DE59F8 /* CheckIn */,
+				6E74DD7B25928C1E00DE59F8 /* Event */,
 				6EB52EC2258D40CD0059C1AB /* Api.swift */,
 				6EB52EC7258D41F90059C1AB /* HTTPStatusCode.swift */,
 				6EB52ECC258D421A0059C1AB /* NetworkResponse.swift */,
 				6EB52ED1258D42220059C1AB /* NetworkError.swift */,
-				6EB52EDC258D42DA0059C1AB /* EventNetworking.swift */,
-				6ECBCFAC258FEDE0003B4FE2 /* CheckInNetworking.swift */,
+				6E74DD7125928BD300DE59F8 /* Networking.swift */,
+				6E74DD7625928BF300DE59F8 /* AnyNetworking.swift */,
+				6E74DD9D25929F7C00DE59F8 /* AnyEncodable.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -502,19 +536,21 @@
 				6EB52F05258D48C40059C1AB /* EventsViewController.swift in Sources */,
 				6ECBCF65258F7D26003B4FE2 /* EventDetailViewController.swift in Sources */,
 				6EB52EC8258D41F90059C1AB /* HTTPStatusCode.swift in Sources */,
+				6E74DD7E25928C4500DE59F8 /* EventsNetworking.swift in Sources */,
 				6EB52F23258D4E250059C1AB /* EventsTableViewCell.swift in Sources */,
 				6EB52ED2258D42220059C1AB /* NetworkError.swift in Sources */,
 				6ECBCF95258FC9DA003B4FE2 /* CheckInViewModel.swift in Sources */,
 				6ECBCF77258FB3B8003B4FE2 /* CheckInAlertViewController.swift in Sources */,
 				6EEEF2032590F771008DCF37 /* CheckInResultAlertViewControllerScreen.swift in Sources */,
 				6ECBCF9A258FCA0C003B4FE2 /* CheckIn.swift in Sources */,
-				6EB52EDD258D42DA0059C1AB /* EventNetworking.swift in Sources */,
 				6EB52E80258D3E4B0059C1AB /* AppDelegate.swift in Sources */,
 				6E017381258E82FE00388E0F /* EventsViewModelDelegate.swift in Sources */,
 				6EB52EF6258D48600059C1AB /* ViewCodable.swift in Sources */,
+				6E74DD9025928CDB00DE59F8 /* EventImageNetworking.swift in Sources */,
 				6EEEF1F22590ECA2008DCF37 /* UIViewController+Extensions.swift in Sources */,
 				6EEEF1E02590CD9D008DCF37 /* EventImage.swift in Sources */,
 				6EB52EFB258D48710059C1AB /* Coordinatable.swift in Sources */,
+				6E74DD8625928C7200DE59F8 /* DataNetworking.swift in Sources */,
 				6EB52EBE258D3F630059C1AB /* Event.swift in Sources */,
 				6EEEF20925910535008DCF37 /* Colors.swift in Sources */,
 				6EEEF1FB2590F75D008DCF37 /* CheckInResultAlertViewController.swift in Sources */,
@@ -522,9 +558,13 @@
 				6EB52EC3258D40CD0059C1AB /* Api.swift in Sources */,
 				6EB52F10258D49620059C1AB /* MainCoordinator.swift in Sources */,
 				6ECBCF6D258F7D65003B4FE2 /* EventDetailViewControllerScreen.swift in Sources */,
+				6E74DD8B25928CAB00DE59F8 /* ImageNetworking.swift in Sources */,
 				6ECBCFAD258FEDE0003B4FE2 /* CheckInNetworking.swift in Sources */,
+				6E74DD7725928BF300DE59F8 /* AnyNetworking.swift in Sources */,
+				6E74DD9E25929F7C00DE59F8 /* AnyEncodable.swift in Sources */,
 				6E01737C258E775200388E0F /* EventsViewModel.swift in Sources */,
 				6EB52F0A258D48E20059C1AB /* EventsViewControllerScreen.swift in Sources */,
+				6E74DD7225928BD300DE59F8 /* Networking.swift in Sources */,
 				6EB52ECD258D421A0059C1AB /* NetworkResponse.swift in Sources */,
 				6ECBCF9F258FD1FA003B4FE2 /* CheckInViewModelDelegate.swift in Sources */,
 			);
