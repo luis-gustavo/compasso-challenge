@@ -60,7 +60,7 @@ extension EventsViewController: ViewCodable {
   func setupConstraints() { }
 
   func setupAdditionalConfiguration() {
-    title = "Events"
+    title = "Eventos"
     navigationController?.navigationBar.barTintColor = Colors.customYellow
     navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Colors.customDarkBlue]
   }

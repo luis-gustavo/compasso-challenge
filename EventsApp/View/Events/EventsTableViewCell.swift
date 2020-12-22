@@ -56,6 +56,8 @@ extension EventsTableViewCell: ViewCodable {
     eventTitle.numberOfLines = 5
     eventTitle.textColor = Colors.customYellow
     eventImage.state = .idle
+    eventImage.activityIndicator.color = .white
     backgroundColor = Colors.customDarkBlue
+
   }
 }

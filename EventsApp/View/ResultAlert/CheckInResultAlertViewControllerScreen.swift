@@ -69,7 +69,7 @@ extension CheckInResultAlertViewControllerScreen: ViewCodable {
     descriptionLabel.textAlignment = .center
     descriptionLabel.numberOfLines = 5
 
-    closeButton.setTitle("Close", for: .normal)
+    closeButton.setTitle("Fechar", for: .normal)
     closeButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
 
     backgroundColor = .white

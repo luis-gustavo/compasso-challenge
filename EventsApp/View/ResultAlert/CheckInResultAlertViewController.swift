@@ -34,11 +34,11 @@ final class CheckInResultAlertViewController: UIViewController {
   // MARK: - Methods
   func setupScreen(code: HTTPStatusCode?, networkError: NetworkError?) {
     if let _ = code {
-      screen.titleLabel.text = "Success"
-      screen.descriptionLabel.text = "Check in was successful"
+      screen.titleLabel.text = "Successo"
+      screen.descriptionLabel.text = "Check In realizado!"
     } else if let _ = networkError {
-      screen.titleLabel.text = "Error"
-      screen.descriptionLabel.text = "Unable to make Check In. Try again."
+      screen.titleLabel.text = "Erro"
+      screen.descriptionLabel.text = "Não foi possível realizar o Check In. Por favor, tente novamente."
     } else {
       preconditionFailure("The should exist a code or an error")
     }

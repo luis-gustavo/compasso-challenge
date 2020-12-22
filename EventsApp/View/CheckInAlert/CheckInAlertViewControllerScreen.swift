@@ -86,7 +86,7 @@ extension CheckInAlertViewControllerScreen: ViewCodable {
     titleLabel.textAlignment = .center
     titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
 
-    descriptionLabel.text = "Type your information to make check in the event"
+    descriptionLabel.text = "Digite seus dados para realizar Check In no evento"
     descriptionLabel.textAlignment = .center
     descriptionLabel.numberOfLines = 5
 
@@ -95,11 +95,11 @@ extension CheckInAlertViewControllerScreen: ViewCodable {
     emailTextField.placeholder = "Email"
     emailTextField.keyboardType = .emailAddress
 
-    cancelButton.setTitle("Cancel", for: .normal)
+    cancelButton.setTitle("Cancelar", for: .normal)
     cancelButton.setTitleColor(.red, for: .normal)
     cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
 
-    confirmButton.setTitle("Confirm", for: .normal)
+    confirmButton.setTitle("Confirmar", for: .normal)
     confirmButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
     confirmButton.isEnabled = false
 

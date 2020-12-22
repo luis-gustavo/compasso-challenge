@@ -57,6 +57,8 @@ final class EventDetailViewController: UIViewController {
     setupEventDescription()
     setupEventImage()
     setupCheckInButtonTarget()
+    setupEventPrice()
+    setupEventDate()
   }
 
   @objc func checkInButtonTapped() {
@@ -80,6 +82,18 @@ extension EventDetailViewController {
 
   fileprivate func setupShareButton() {
     navigationItem.rightBarButtonItem = UIBarButtonItem(image: shareImage, style: .done, target: self, action: #selector(didTapShareButton))
+  }
+
+  fileprivate func setupEventPrice() {
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .currency
+    screen.eventPrice.text = numberFormatter.string(from: NSNumber(value: event.price))
+  }
+
+  fileprivate func setupEventDate() {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd/MM/yyyy"
+    screen.eventDate.text = dateFormatter.string(from: event.date)
   }
 
   fileprivate func setupEventImage() {

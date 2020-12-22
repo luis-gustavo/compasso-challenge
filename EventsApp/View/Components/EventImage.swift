@@ -16,7 +16,7 @@ final class EventImage: UIImageView {
   }
 
   // MARK: - Properties
-  fileprivate var activityIndicator = UIActivityIndicatorView(frame: .zero)
+  let activityIndicator = UIActivityIndicatorView(frame: .zero)
   var state: EventImageState = .idle {
     didSet {
       change(to: state)
@@ -79,8 +79,6 @@ extension EventImage: ViewCodable {
     }
   }
 
-  func setupAdditionalConfiguration() {
-    activityIndicator.color = .white
-  }
+  func setupAdditionalConfiguration() { }
 }
 
