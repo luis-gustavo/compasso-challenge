@@ -21,8 +21,8 @@ final class EventsViewModel {
 
   // MARK: - Methods
   func getEvents() {
-    EventNetworking
-      .getEvents()
+    EventNetworking()
+      .requestEvents()
       .receive(on: RunLoop.main)
       .sink { completion in
       switch completion {
