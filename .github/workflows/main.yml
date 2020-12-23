@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run tests
+      run: xcodebuild -project 'EventsApp.xcodeproj' -scheme 'EventsApp' -destination 'platform=iOS Simulator,name=iPhone 8' test
+
+    - name: Build app
+      run: xcodebuild -project 'EventsApp.xcodeproj' -scheme 'EventsApp' -destination 'generic/platform=iOS' -configuration Release build CODE_SIGNING_ALLOWED=NO
